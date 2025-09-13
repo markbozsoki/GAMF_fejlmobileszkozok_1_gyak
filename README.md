@@ -1,0 +1,1 @@
+# GAMF_fejlmobileszkozok_1_gyak
