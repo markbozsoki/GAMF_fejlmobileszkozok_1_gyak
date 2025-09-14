@@ -1,0 +1,42 @@
+name: Build and test
+
+permissions:
+  id-token: write
+  contents: read
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+
+jobs:
+  build-and-test:
+    name: Build, test and lint application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build
+        run: |
+          gradle build
+      
+      - name: Run unit tests
+        run: |
+          gradle test
+
+      - name: Lint
+        run: |
+          gradle lint
