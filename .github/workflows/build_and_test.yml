@@ -31,7 +31,7 @@ jobs:
 
       - name: Build
         run: |
-          ./gradlew buils
+          ./gradlew build
       
       - name: Run unit tests
         run: |
