@@ -4,9 +4,9 @@
 
 # Checklist
 <!-- All boxes must be checked in [x], befre the review! -->
- - [ ] There are no errors or warnings in the new code
+ - [ ] There are no errors or major warnings in the new code
  - [ ] Changes are manually tested and verified
- - [ ] README is updated
+ - [ ] README is updated with a brief description
  - [ ] All dependent changes has been merged
 
 
