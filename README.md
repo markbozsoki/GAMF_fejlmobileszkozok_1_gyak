@@ -1,31 +1,59 @@
 # GAMF_fejlmobileszkozok_1_gyak
 
-## Description
+## App description
 
+A personal money management and budgeting app, capable of processing user-provided data about monthly income and costs.
+The app can also help visualize the current and predicted state of the user's assets and investments.
 
+## Core functionalities
 
-## Contributors
+ - Registering and visualizing monthly income and spending by category
+    - The user does not need to create a profile
+ - Registering the current value of already owned assets, investments, and debts
+ - Visualization of the cuttent state of the users wealth
+ - Based on the already acquired assets, investments, debts, and monthly income, the app:
+    1. Estimates the growth or decline of wealth
+    2. Calculates a personal emergency fund and the time required to build it up
+- The user can apply expected additional income or spending to make the future wealth estimation more accurate
+
+---
+
+### Storyboard
+
+```in progress```
+
+---
+
+### Contributors
   
  - [**Óré Szabina Vivien**](https://github.com/MoSzabina)
  - [**Kovács Norbert**](https://github.com/norbertkovacsgit)
  - [**Bozsóki Márk**](https://github.com/markbozsoki)
 
-## Development
+---
 
-<details><summary><h3> Task 1 </h3></summary>
+### Development and technical details
+
+<details><summary><h3> Szabina Notes </h3></summary>
+
 desc
+
 </details>
 
 ---
 
-<details><summary><h3> Task 2 </h3></summary>
+<details><summary><h3> Norbi Notes </h3></summary>
+
 desc
+
 </details>
 
 ---
 
-<details><summary><h3> Task 3 </h3></summary>
-desc
+<details><summary><h3> Márk Notes </h3></summary>
+
+- added empty project with readme and an automated GH action to build, test and lint the project
+
 </details>
 
 ---
