@@ -3,7 +3,7 @@
 
 
 # Checklist
-<!-- All boxes must be checked in [x], befre the review! -->
+<!-- All boxes must be checked in [x], before the review! -->
  - [ ] There are no errors or major warnings in the new code
  - [ ] Changes are manually tested and verified
  - [ ] README is updated with a brief description

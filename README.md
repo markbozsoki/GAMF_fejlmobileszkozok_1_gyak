@@ -10,7 +10,7 @@ The app can also help visualize the current and predicted state of the user's as
  - Registering and visualizing monthly income and spending by category
     - The user does not need to create a profile
  - Registering the current value of already owned assets, investments, and debts
- - Visualization of the cuttent state of the users wealth
+ - Visualization of the current state of the users wealth
  - Based on the already acquired assets, investments, debts, and monthly income, the app:
     1. Estimates the growth or decline of wealth
     2. Calculates a personal emergency fund and the time required to build it up
