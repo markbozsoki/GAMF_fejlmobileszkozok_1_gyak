@@ -7,13 +7,13 @@ The app can also help visualize the current and predicted state of the user's as
 
 ## Core functionalities
 
- - Registering and visualizing monthly income and spending by category
-    - The user does not need to create a profile
- - Registering the current value of already owned assets, investments, and debts
- - Visualization of the current state of the users wealth
- - Based on the already acquired assets, investments, debts, and monthly income, the app:
-    1. Estimates the growth or decline of wealth
-    2. Calculates a personal emergency fund and the time required to build it up
+- Registering and visualizing monthly income and spending by category
+   - The user does not need to create a profile
+- Registering the current value of already owned assets, investments, and debts
+- Visualization of the current state of the users wealth
+- Based on the already acquired assets, investments, debts, and monthly income, the app:
+   1. Estimates the growth or decline of wealth
+   2. Calculates a personal emergency fund and the time required to build it up
 - The user can apply expected additional income or spending to make the future wealth estimation more accurate
 
 ---
@@ -25,10 +25,10 @@ The app can also help visualize the current and predicted state of the user's as
 ---
 
 ### Contributors
-  
- - [**Óré Szabina Vivien**](https://github.com/MoSzabina)
- - [**Kovács Norbert**](https://github.com/norbertkovacsgit)
- - [**Bozsóki Márk**](https://github.com/markbozsoki)
+
+- [**Óré Szabina Vivien**](https://github.com/MoSzabina)
+- [**Kovács Norbert**](https://github.com/norbertkovacsgit)
+- [**Bozsóki Márk**](https://github.com/markbozsoki)
 
 ---
 
@@ -36,7 +36,7 @@ The app can also help visualize the current and predicted state of the user's as
 
 <details><summary><h3> Szabina Notes </h3></summary>
 
-desc
+- added MPAndroidChart library (JitPack repo + libs.versions.toml + app module) using (https://github.com/PhilJay/MPAndroidChart)
 
 </details>
 
@@ -57,5 +57,8 @@ desc
 </details>
 
 ---
+### Dependencies
+
+- MPAndroidChart – chart rendering library (https://javadoc.jitpack.io/com/github/PhilJay/MPAndroidChart/v3.1.0/javadoc/)
 
 <p align="right"><sub>2025/26/1</sub></p>
