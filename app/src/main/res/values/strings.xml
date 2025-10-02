@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MobilEszkozokProjeKt</string>
+    <string name="homePage">Home</string>
+    <string name="testPage">Test</string>
+    <string name="homeMenu">Home</string>
+    <string name="testMenu">Test</string>
 </resources>
