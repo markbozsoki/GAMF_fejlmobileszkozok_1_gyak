@@ -44,7 +44,16 @@ The app can also help visualize the current and predicted state of the user's as
 
 <details><summary><h3> Norbi Notes </h3></summary>
 
-desc
+- Creating Home & Test fragments
+- Adding home.png as the picture of the Home button
+- Making the layouts for each component:
+   - fragment_home
+   - fragment_test
+   - main_menu
+   - nav_graph
+   - Updating the activity_main for the Toolbar implementation
+- Extending strings.xml for fragment name aliases
+- Updating MainActivity with Toolbar and Navigation functions
 
 </details>
 
@@ -60,5 +69,7 @@ desc
 ### Dependencies
 
 - MPAndroidChart – chart rendering library (https://javadoc.jitpack.io/com/github/PhilJay/MPAndroidChart/v3.1.0/javadoc/)
+
+- navigation = "2.9.5" - Navigation and UI libraries 
 
 <p align="right"><sub>2025/26/1</sub></p>
