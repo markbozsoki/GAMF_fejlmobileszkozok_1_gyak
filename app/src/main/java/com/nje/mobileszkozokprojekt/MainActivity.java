@@ -3,7 +3,6 @@ package com.nje.mobileszkozokprojekt;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("FinancialApp");
 
         //Navigation
-        NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
 
         assert navHostFragment != null;
         navController = navHostFragment.getNavController();
