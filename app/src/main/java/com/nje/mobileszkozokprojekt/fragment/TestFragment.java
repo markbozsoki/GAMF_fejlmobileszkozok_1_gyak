@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.nje.mobileszkozokprojekt.R;
 
-public class TestFragment extends Fragment {
+public class TestFragment extends Fragment { // TODO: rename this to "EstimationFragment"
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
