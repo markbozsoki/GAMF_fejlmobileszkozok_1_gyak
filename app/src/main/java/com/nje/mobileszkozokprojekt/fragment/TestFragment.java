@@ -1,4 +1,4 @@
-package com.nje.mobileszkozokprojekt.fragments;
+package com.nje.mobileszkozokprojekt.fragment;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
