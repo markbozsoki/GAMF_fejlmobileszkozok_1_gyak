@@ -1,8 +1,8 @@
 package com.nje.mobileszkozokprojekt.data.entity;
 
-import com.nje.mobileszkozokprojekt.data.entity.interfaces.EntityWithId;
+import com.nje.mobileszkozokprojekt.data.entity.interfaces.IEntityWithId;
 
-public class BudgetingEntity implements EntityWithId {
+public class BudgetingEntity implements IEntityWithId {
 
     @Override
     public int getId() {

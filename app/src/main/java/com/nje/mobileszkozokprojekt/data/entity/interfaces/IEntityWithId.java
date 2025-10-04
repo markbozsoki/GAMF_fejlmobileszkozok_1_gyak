@@ -1,6 +1,6 @@
 package com.nje.mobileszkozokprojekt.data.entity.interfaces;
 
-public interface EntityWithId {
+public interface IEntityWithId {
 
     int getId();
 
