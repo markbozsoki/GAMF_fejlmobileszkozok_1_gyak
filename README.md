@@ -62,6 +62,7 @@ The app can also help visualize the current and predicted state of the user's as
 <details><summary><h3> Márk Notes </h3></summary>
 
 - added empty project with readme and an automated GH action to build, test and lint the project
+- defined repository filesystem
 
 </details>
 
@@ -69,7 +70,7 @@ The app can also help visualize the current and predicted state of the user's as
 ### Dependencies
 
 - MPAndroidChart – chart rendering library (https://javadoc.jitpack.io/com/github/PhilJay/MPAndroidChart/v3.1.0/javadoc/)
-
-- navigation = "2.9.5" - Navigation and UI libraries 
+- Navigation and UI libraries
+- Fragment
 
 <p align="right"><sub>2025/26/1</sub></p>
