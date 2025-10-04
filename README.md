@@ -63,7 +63,8 @@ The app can also help visualize the current and predicted state of the user's as
 <details><summary><h3> Márk Notes </h3></summary>
 
 - added empty project with readme and an automated GH action to build, test and lint the project
-- defined repository filesystem
+- defined project filesystem
+- added baseclasses for DB repositories
 
 </details>
 
