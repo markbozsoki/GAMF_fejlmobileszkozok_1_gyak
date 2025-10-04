@@ -4,24 +4,9 @@ import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
 
 import java.util.List;
 
-public interface BudgetingDao {
+public interface BudgetingDao extends DefaultDao<BudgetingEntity> {
 
     List<BudgetingEntity> getAll();
 
     BudgetingEntity getById(String id);
-
-    /**
-     * Returns true on success, returns false on error
-     */
-    boolean insert(BudgetingEntity entity);
-
-    /**
-     * Returns true on success, returns false on error
-     */
-    boolean update(BudgetingEntity entity);
-
-    /**
-     * Returns true on success, returns false on error
-     */
-    boolean delete(BudgetingEntity entity);
 }

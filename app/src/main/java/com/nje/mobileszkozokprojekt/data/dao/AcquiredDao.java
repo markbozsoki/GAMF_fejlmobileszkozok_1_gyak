@@ -1,4 +1,12 @@
 package com.nje.mobileszkozokprojekt.data.dao;
 
-public interface AcquiredDao {
+import com.nje.mobileszkozokprojekt.data.entity.AcquiredEntity;
+
+import java.util.List;
+
+public interface AcquiredDao extends DefaultDao<AcquiredEntity> {
+
+    List<AcquiredEntity> getAll();
+
+    AcquiredEntity getById(String id);
 }
