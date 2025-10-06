@@ -74,5 +74,6 @@ The app can also help visualize the current and predicted state of the user's as
 - MPAndroidChart – chart rendering library (https://javadoc.jitpack.io/com/github/PhilJay/MPAndroidChart/v3.1.0/javadoc/)
 - Navigation and UI libraries
 - Fragment
+- Room
 
 <p align="right"><sub>2025/26/1</sub></p>
