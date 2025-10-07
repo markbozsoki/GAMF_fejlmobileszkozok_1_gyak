@@ -10,8 +10,8 @@
         />
 
     <item
-        android:id="@+id/testFragment"
-        android:title="@string/test_menu"
+        android:id="@+id/estimationFragment"
+        android:title="@string/estimation_menu"
         app:showAsAction="never"
         />
 

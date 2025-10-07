@@ -13,9 +13,9 @@
         />
 
     <fragment
-        android:id="@+id/testFragment"
-        android:name="com.nje.mobileszkozokprojekt.fragment.TestFragment"
-        android:label="Test"
-        tools:layout="@layout/fragment_test"
+        android:id="@+id/estimationFragment"
+        android:name="com.nje.mobileszkozokprojekt.fragment.EstimationFragment"
+        android:label="Estimation"
+        tools:layout="@layout/fragment_estimation"
         />
 </navigation>

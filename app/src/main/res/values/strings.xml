@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">MobilEszkozokProjeKt</string>
     <string name="home_page">Home Page</string>
-    <string name="test_page">Test Page</string>
+    <string name="estimation_page">Estimation Page</string>
     <string name="home_menu">Home</string>
-    <string name="test_menu">Test</string>
+    <string name="estimation_menu">Estimation</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
