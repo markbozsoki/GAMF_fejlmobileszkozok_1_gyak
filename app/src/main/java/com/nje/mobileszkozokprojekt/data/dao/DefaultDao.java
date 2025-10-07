@@ -12,17 +12,17 @@ public interface DefaultDao<T> {
      * Returns true on success, returns false on error
      */
     @Insert
-    boolean insert(T entity);
+    void insert(T entity);
 
     /**
      * Returns true on success, returns false on error
      */
     @Update
-    boolean update(T entity);
+    void update(T entity);
 
     /**
      * Returns true on success, returns false on error
      */
     @Delete
-    boolean delete(T entity);
+    void delete(T entity);
 }

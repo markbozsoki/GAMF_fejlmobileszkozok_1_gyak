@@ -11,15 +11,15 @@ public interface IRepository<T> {
     /**
      * Returns true on success, returns false on error
      */
-    boolean insert(T entity);
+    void insert(T entity);
 
     /**
      * Returns true on success, returns false on error
      */
-    boolean update(T entity);
+    void update(T entity);
 
     /**
      * Returns true on success, returns false on error
      */
-    boolean delete(T entity);
+    void delete(T entity);
 }

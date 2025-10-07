@@ -17,49 +17,26 @@ public class BudgetingRepository implements IRepository<BudgetingEntity> {
 
     @Override
     public List<BudgetingEntity> getAll() {
-        try {
-            return database.budgetingDao().getAll();
-        } catch (Exception ex) {
-            return Collections.emptyList();
-        }
+        return database.budgetingDao().getAll();
     }
 
     @Override
     public BudgetingEntity getById(String id) {
-        try {
-            return database.budgetingDao().getById(id);
-        } catch (Exception ex) {
-            return null;
-        }
+        return database.budgetingDao().getById(id);
     }
 
     @Override
-    public boolean insert(BudgetingEntity entity) {
-        try {
-            database.budgetingDao().insert(entity);
-        } catch (Exception ex) {
-            return false;
-        }
-        return true;
+    public void insert(BudgetingEntity entity) {
+        database.budgetingDao().insert(entity);
     }
 
     @Override
-    public boolean update(BudgetingEntity entity) {
-        try {
-            database.budgetingDao().update(entity);
-        } catch (Exception ex) {
-            return false;
-        }
-        return true;
+    public void update(BudgetingEntity entity) {
+        database.budgetingDao().update(entity);
     }
 
     @Override
-    public boolean delete(BudgetingEntity entity) {
-        try {
-            database.budgetingDao().delete(entity);
-        } catch (Exception ex) {
-            return false;
-        }
-        return true;
+    public void delete(BudgetingEntity entity) {
+        database.budgetingDao().delete(entity);
     }
 }
