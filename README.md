@@ -55,6 +55,7 @@ The app can also help visualize the current and predicted state of the user's as
    - Updating the activity_main for the Toolbar implementation
 - Extending strings.xml for fragment name aliases
 - Updating MainActivity with Toolbar and Navigation functions
+- Refactor Test Page to Estimation Page and all of its dependants
 
 </details>
 
