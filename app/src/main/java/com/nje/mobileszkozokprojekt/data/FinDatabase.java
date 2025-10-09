@@ -9,16 +9,20 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.nje.mobileszkozokprojekt.data.dao.BudgetingDao;
+import com.nje.mobileszkozokprojekt.data.dao.UpcomingDao;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
+import com.nje.mobileszkozokprojekt.data.entity.UpcomingEntity;
 
 import java.util.concurrent.Executors;
 
 @Database(entities = {
-        BudgetingEntity.class
+        BudgetingEntity.class,
+        UpcomingEntity.class
 }, version = 1)
 public abstract class FinDatabase extends RoomDatabase {
 
     public abstract BudgetingDao budgetingDao();
+    public abstract UpcomingDao upcomingDao();
 
     public static volatile FinDatabase INSTANCE;
 
