@@ -12,7 +12,6 @@ public class UpcomingEntity implements IEntityWithId {
     private int id;
     private String name;
     private String type;
-    private String category;
     private double value; // in USD
     private String dueDate;
 
@@ -20,14 +19,12 @@ public class UpcomingEntity implements IEntityWithId {
             int id,
             String name,
             String type,
-            String category,
             double value,
             String dueDate
     ) {
         this.id = id;
         this.name = name;
         this.type = type;
-        this.category = category;
         this.value = value;
         this.dueDate = dueDate;
     }
@@ -42,18 +39,34 @@ public class UpcomingEntity implements IEntityWithId {
         this.id = id;
     }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getName() {
+        return name;
+    }
 
-    public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getCategory() { return category; }
-    public void setCategory(String category) { this.category = category; }
+    public String getType() {
+        return type;
+    }
 
-    public double getValue() { return value; }
-    public void setValue(double value) { this.value = value; }
+    public void setType(String type) {
+        this.type = type;
+    }
 
-    public String getDueDate() { return dueDate; }
-    public void setDueDate(String dueDate) { this.dueDate = dueDate; }
+    public double getValue() {
+        return value;
+
+    }
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
 }
