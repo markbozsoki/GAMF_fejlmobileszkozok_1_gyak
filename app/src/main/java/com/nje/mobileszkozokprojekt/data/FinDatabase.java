@@ -8,8 +8,10 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.nje.mobileszkozokprojekt.data.dao.AcquiredDao;
 import com.nje.mobileszkozokprojekt.data.dao.BudgetingDao;
 import com.nje.mobileszkozokprojekt.data.dao.UpcomingDao;
+import com.nje.mobileszkozokprojekt.data.entity.AcquiredEntity;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
 import com.nje.mobileszkozokprojekt.data.entity.UpcomingEntity;
 
@@ -17,12 +19,14 @@ import java.util.concurrent.Executors;
 
 @Database(entities = {
         BudgetingEntity.class,
-        UpcomingEntity.class
+        UpcomingEntity.class,
+        AcquiredEntity.class
 }, version = 1)
 public abstract class FinDatabase extends RoomDatabase {
 
     public abstract BudgetingDao budgetingDao();
     public abstract UpcomingDao upcomingDao();
+    public abstract AcquiredDao acquiredDao();
 
     public static volatile FinDatabase INSTANCE;
 
