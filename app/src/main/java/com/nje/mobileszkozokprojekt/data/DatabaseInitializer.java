@@ -1,5 +1,6 @@
 package com.nje.mobileszkozokprojekt.data;
 
+import com.nje.mobileszkozokprojekt.data.entity.AcquiredEntity;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
 import com.nje.mobileszkozokprojekt.data.entity.UpcomingEntity;
 
@@ -14,6 +15,7 @@ public class DatabaseInitializer {
     public void populateDatabase() {
         seedBudgetingEntities();
         seedUpcomingEntities();
+        seedAcquiredEntities();
     }
 
     private void seedBudgetingEntities(){
@@ -28,5 +30,12 @@ public class DatabaseInitializer {
         dataBase.upcomingDao().insert(new UpcomingEntity(2, "insurance", "outgoing", 160, "2026-10-12"));
         dataBase.upcomingDao().insert(new UpcomingEntity(3, "EFT profit", "incoming", 11.02, "2025-12-31"));
         dataBase.upcomingDao().insert(new UpcomingEntity(2, "property tax", "outgoing", 80.53, "2026-04-30"));
+    }
+
+    private void seedAcquiredEntities(){
+        dataBase.acquiredDao().insert(new AcquiredEntity(1, "house", "property", 65000000, "HUF"));
+        dataBase.acquiredDao().insert(new AcquiredEntity(2, "car", "goods", 12.500, "EUR"));
+        dataBase.acquiredDao().insert(new AcquiredEntity(3, "gold chain", "heritage", 300.3, "CHF"));
+        dataBase.acquiredDao().insert(new AcquiredEntity(4, "laptop", "goods", 1000 ,"USD"));
     }
 }
