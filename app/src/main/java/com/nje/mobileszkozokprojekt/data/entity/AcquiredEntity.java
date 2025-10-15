@@ -11,22 +11,22 @@ public class AcquiredEntity implements IEntityWithId {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
+    private String type;
     private String category;
     private double value;
-    private String currency;
 
     public AcquiredEntity(
             int id,
             String name,
+            String type,
             String category,
-            double value,
-            String currency
+            double value
     ) {
         this.id = id;
         this.name = name;
+        this.type = type;
         this.category = category;
         this.value = value;
-        this.currency = currency;
     }
 
     @Override
@@ -39,6 +39,10 @@ public class AcquiredEntity implements IEntityWithId {
 
     public void setName(String name) { this.name = name; }
 
+    public String getType() {return type; }
+
+    public void setType(String type) { this.type = type; }
+
     public String getCategory() { return category; }
 
     public void setCategory(String category) { this.category = category; }
@@ -46,8 +50,4 @@ public class AcquiredEntity implements IEntityWithId {
     public double getValue() { return value; }
 
     public void setValue(double value) { this.value = value; }
-
-    public String getCurrency() {return currency; }
-
-    public void setCurrency(String currency) { this.currency = currency; }
 }
