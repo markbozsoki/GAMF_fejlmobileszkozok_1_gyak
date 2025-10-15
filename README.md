@@ -57,6 +57,11 @@ The app can also help visualize the current and predicted state of the user's as
 - Extending strings.xml for fragment name aliases
 - Updating MainActivity with Toolbar and Navigation functions
 - Refactor Test Page to Estimation Page and all of its dependants
+- Wrote base queries for AcquiredDao
+- Set up the base entities in AcquiredEntity
+- Wrote base CRUD functions in AcquiredRepository
+- Update the DatabaseInitializer with starting values
+- Update the FinDatabase with acquiredDao
 
 </details>
 
