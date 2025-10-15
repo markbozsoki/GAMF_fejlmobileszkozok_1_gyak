@@ -33,9 +33,9 @@ public class DatabaseInitializer {
     }
 
     private void seedAcquiredEntities(){
-        dataBase.acquiredDao().insert(new AcquiredEntity(1, "house", "property", 65000000, "HUF"));
-        dataBase.acquiredDao().insert(new AcquiredEntity(2, "car", "goods", 12.500, "EUR"));
-        dataBase.acquiredDao().insert(new AcquiredEntity(3, "gold chain", "heritage", 300.3, "CHF"));
-        dataBase.acquiredDao().insert(new AcquiredEntity(4, "laptop", "goods", 1000 ,"USD"));
+        dataBase.acquiredDao().insert(new AcquiredEntity(1, "house", "property", "acquired", 200000));
+        dataBase.acquiredDao().insert(new AcquiredEntity(2, "car", "goods", "acquired", 20000));
+        dataBase.acquiredDao().insert(new AcquiredEntity(3, "gold chain", "heritage", "acquired", 300.5));
+        dataBase.acquiredDao().insert(new AcquiredEntity(4, "laptop", "goods", "acquired" ,1000));
     }
 }
