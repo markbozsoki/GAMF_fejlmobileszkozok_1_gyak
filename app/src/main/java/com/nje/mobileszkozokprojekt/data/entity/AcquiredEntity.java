@@ -47,7 +47,7 @@ public class AcquiredEntity implements IEntityWithId {
 
     public void setValue(double value) { this.value = value; }
 
-    private String getCurrency() {return currency; }
+    public String getCurrency() {return currency; }
 
     public void setCurrency(String currency) { this.currency = currency; }
 }
