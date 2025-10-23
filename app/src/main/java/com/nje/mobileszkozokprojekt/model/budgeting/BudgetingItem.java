@@ -21,13 +21,6 @@ public class BudgetingItem {
         this.value = value;
     }
 
-    public BudgetingItem(BudgetingEntity budgetingEntity) {
-        this.name = budgetingEntity.getName();
-        this.type = Direction.valueOf(budgetingEntity.getType().toLowerCase());
-        this.category = Category.valueOf(budgetingEntity.getCategory().toLowerCase());
-        this.value = budgetingEntity.getValue();
-    }
-
     public String getName() {
         return name;
     }

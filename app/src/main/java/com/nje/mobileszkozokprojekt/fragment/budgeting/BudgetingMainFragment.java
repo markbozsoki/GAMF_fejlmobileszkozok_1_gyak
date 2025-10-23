@@ -15,8 +15,11 @@ import com.nje.mobileszkozokprojekt.data.FinDatabase;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
 import com.nje.mobileszkozokprojekt.data.repository.BudgetingRepository;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
+import com.nje.mobileszkozokprojekt.model.Direction;
 import com.nje.mobileszkozokprojekt.model.budgeting.BudgetingItem;
+import com.nje.mobileszkozokprojekt.model.budgeting.Category;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,9 +42,15 @@ public class BudgetingMainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_budgeting_main, container, false);
 
         List<BudgetingEntity> entities = budgetingRepository.getAll();
-        List<BudgetingItem> items = Collections.emptyList();
+        List<BudgetingItem> items = new ArrayList<>();
         for (BudgetingEntity entity : entities) {
-            items.add(new BudgetingItem(entity));
+            BudgetingItem budgetingItem = new BudgetingItem(
+                    entity.getName(),
+                    Direction.valueOf(entity.getType().toUpperCase()),
+                    Category.valueOf(entity.getCategory().toUpperCase()),
+                    entity.getValue()
+            );
+            items.add(budgetingItem);
         }
 
         RecyclerView recyclerView = view.findViewById(R.id.budgetingListRecyclerView);
