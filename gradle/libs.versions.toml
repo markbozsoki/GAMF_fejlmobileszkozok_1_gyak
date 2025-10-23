@@ -12,9 +12,10 @@ navigation = "2.9.5"
 fragment = "1.8.9"
 room = "2.6.1"
 recyclerview = "1.4.0"
-hiltversion = "2.48"
+hilt = "2.57.2"
 
 [libraries]
+hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -29,8 +30,8 @@ fragment = { group = "androidx.fragment", name = "fragment", version.ref = "frag
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltversion" }
-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltversion" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
