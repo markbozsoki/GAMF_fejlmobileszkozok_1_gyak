@@ -72,6 +72,8 @@ The app can also help visualize the current and predicted state of the user's as
 - added empty project with readme and an automated GH action to build, test and lint the project
 - defined project filesystem
 - added baseclasses for DB repositories
+- added Hilt as dependency injection framework
+- implemented the budgeting view frame and list load with no button functionalities  
 
 </details>
 
