@@ -1,8 +1,7 @@
-package com.nje.mobileszkozokprojekt.module;
+package com.nje.mobileszkozokprojekt.data;
 
 import android.content.Context;
 
-import com.nje.mobileszkozokprojekt.data.FinDatabase;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
 import com.nje.mobileszkozokprojekt.data.repository.BudgetingRepository;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
@@ -17,7 +16,7 @@ import dagger.hilt.components.SingletonComponent;
 
 @Module
 @InstallIn(SingletonComponent.class)
-public class FinModule {
+public class DatabaseModule {
 
     @Provides
     @Singleton
