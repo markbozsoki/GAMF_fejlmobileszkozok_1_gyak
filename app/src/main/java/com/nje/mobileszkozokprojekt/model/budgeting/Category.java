@@ -3,8 +3,8 @@ package com.nje.mobileszkozokprojekt.model.budgeting;
 import androidx.annotation.NonNull;
 
 public enum Category {
-    INCOME("income"),
     COST("cost"),
+    INCOME("income"),
     DEBT("debt"),
     INVESTMENT("investment");
 

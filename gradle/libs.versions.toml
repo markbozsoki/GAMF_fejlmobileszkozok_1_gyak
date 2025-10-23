@@ -35,3 +35,4 @@ hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hil
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
