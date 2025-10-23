@@ -1,14 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.budgeting.BudgetingMainFragment">
+    tools:context=".fragment.budgeting.BudgetingMainFragment"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/budgetingAddItemButton" />
+
+    <ImageView
+        android:id="@+id/diagramPlaceholder"
+        android:layout_width="0dp"
+        android:layout_height="248dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/budgetingNameTextInputEditText"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/type_input_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/diagramPlaceholder" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/budgetingCategoryTextInputEditText"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/type_input_hint"
+        app:layout_constraintStart_toStartOf="@+id/budgetingNameTextInputEditText"
+        app:layout_constraintTop_toBottomOf="@+id/budgetingNameTextInputEditText" />
+
+    <EditText
+        android:id="@+id/budgetingValueEditTextNumberDecimal"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="@string/type_input_hint"
+        android:autofillHints="100"
+        app:layout_constraintStart_toStartOf="@+id/budgetingNameTextInputEditText"
+        app:layout_constraintTop_toBottomOf="@+id/budgetingCategoryTextInputEditText" />
+
+    <ToggleButton
+        android:id="@+id/budgetingTypeToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="25dp"
+        android:textOff="@string/cost_label"
+        android:textOn="@string/income_label"
+        app:layout_constraintBottom_toBottomOf="@+id/budgetingValueEditTextNumberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/budgetingNameTextInputEditText"
+        app:layout_constraintStart_toEndOf="@+id/budgetingValueEditTextNumberDecimal" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/budgetingNameInputTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/name_label"
+        app:layout_constraintBaseline_toBaselineOf="@+id/budgetingNameTextInputEditText"
+        app:layout_constraintEnd_toStartOf="@+id/budgetingNameTextInputEditText"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/budgetingCategoryInputTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/category_label"
+        app:layout_constraintBaseline_toBaselineOf="@+id/budgetingCategoryTextInputEditText"
+        app:layout_constraintEnd_toEndOf="@+id/budgetingNameInputTextView" />
+
+    <TextView
+        android:id="@+id/budgetingValueInputTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/value_label"
+        app:layout_constraintBaseline_toBaselineOf="@+id/budgetingValueEditTextNumberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/budgetingNameInputTextView" />
+
+    <Button
+        android:id="@+id/budgetingAddItemButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/add_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/budgetingValueEditTextNumberDecimal" />
+
+    <Button
+        android:id="@+id/budgetingClearAllInputButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="45dp"
+        android:text="@string/clear_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/budgetingAddItemButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>
