@@ -9,6 +9,13 @@
     <string name="category_label">Category</string>
     <string name="value_label">Value</string>
 
+    <string-array name="budgeting_category">
+        <item>cost</item>
+        <item>income</item>
+        <item>debt</item>
+        <item>investment</item>
+    </string-array>
+
     <string name="cost_label">Cost</string>
     <string name="income_label">Income</string>
 

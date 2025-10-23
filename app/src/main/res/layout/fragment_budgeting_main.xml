@@ -37,26 +37,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diagramPlaceholder" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/budgetingCategoryTextInputEditText"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:hint="@string/type_input_hint"
-        app:layout_constraintStart_toStartOf="@+id/budgetingNameTextInputEditText"
-        app:layout_constraintTop_toBottomOf="@+id/budgetingNameTextInputEditText" />
-
     <EditText
         android:id="@+id/budgetingValueEditTextNumberDecimal"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:hint="@string/type_input_hint"
         android:autofillHints="100"
+        android:ems="10"
+        android:hint="@string/type_input_hint"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toStartOf="@+id/budgetingNameTextInputEditText"
-        app:layout_constraintTop_toBottomOf="@+id/budgetingCategoryTextInputEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/budgetingCategorySpinner" />
 
     <ToggleButton
         android:id="@+id/budgetingTypeToggleButton"
@@ -85,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/category_label"
-        app:layout_constraintBaseline_toBaselineOf="@+id/budgetingCategoryTextInputEditText"
+        app:layout_constraintBaseline_toBaselineOf="@+id/budgetingCategorySpinner"
         app:layout_constraintEnd_toEndOf="@+id/budgetingNameInputTextView" />
 
     <TextView
@@ -114,4 +105,13 @@
         android:text="@string/clear_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/budgetingAddItemButton" />
+
+    <Spinner
+        android:id="@+id/budgetingCategorySpinner"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:entries="@array/budgeting_category"
+        app:layout_constraintStart_toStartOf="@+id/budgetingNameTextInputEditText"
+        app:layout_constraintTop_toBottomOf="@+id/budgetingNameTextInputEditText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
