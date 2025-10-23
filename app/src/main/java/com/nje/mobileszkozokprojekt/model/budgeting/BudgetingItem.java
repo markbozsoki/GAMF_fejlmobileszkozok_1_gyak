@@ -1,5 +1,6 @@
 package com.nje.mobileszkozokprojekt.model.budgeting;
 
+import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
 import com.nje.mobileszkozokprojekt.model.Direction;
 
 public class BudgetingItem {
@@ -18,6 +19,13 @@ public class BudgetingItem {
         this.type = type;
         this.category = category;
         this.value = value;
+    }
+
+    public BudgetingItem(BudgetingEntity budgetingEntity) {
+        this.name = budgetingEntity.getName();
+        this.type = Direction.valueOf(budgetingEntity.getType().toLowerCase());
+        this.category = Category.valueOf(budgetingEntity.getCategory().toLowerCase());
+        this.value = budgetingEntity.getValue();
     }
 
     public String getName() {
