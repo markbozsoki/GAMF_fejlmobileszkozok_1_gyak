@@ -2,8 +2,10 @@
     <string name="app_name">MobilEszkozokProjeKt</string>
     <string name="home_page">Home Page</string>
     <string name="estimation_page">Estimation Page</string>
-    <string name="home_menu">Home</string>
-    <string name="estimation_menu">Estimation</string>
+
+    <string name="home_label">Home</string>
+    <string name="budgeting_label">Budgeting</string>
+    <string name="estimation_label">Estimation</string>
 
     <string name="name_label">Name</string>
     <string name="category_label">Category</string>

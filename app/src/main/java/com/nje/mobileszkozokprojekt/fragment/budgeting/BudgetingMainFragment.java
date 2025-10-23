@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nje.mobileszkozokprojekt.R;
+import com.nje.mobileszkozokprojekt.data.FinDatabase;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
+import com.nje.mobileszkozokprojekt.data.repository.BudgetingRepository;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
 import com.nje.mobileszkozokprojekt.model.budgeting.BudgetingItem;
 
@@ -20,6 +22,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class BudgetingMainFragment extends Fragment {
 
     @Inject
