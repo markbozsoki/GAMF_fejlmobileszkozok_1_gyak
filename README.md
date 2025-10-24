@@ -84,5 +84,7 @@ The app can also help visualize the current and predicted state of the user's as
 - Navigation and UI libraries
 - Fragment
 - Room
+- Recyclerview 
+- Hilt
 
 <p align="right"><sub>2025/26/1</sub></p>
