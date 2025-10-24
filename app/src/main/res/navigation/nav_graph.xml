@@ -8,14 +8,22 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.nje.mobileszkozokprojekt.fragment.HomeFragment"
-        android:label="Home"
+        android:label="@string/home_label"
         tools:layout="@layout/fragment_home"
         />
 
     <fragment
         android:id="@+id/estimationFragment"
         android:name="com.nje.mobileszkozokprojekt.fragment.EstimationFragment"
-        android:label="Estimation"
+        android:label="@string/estimation_label"
         tools:layout="@layout/fragment_estimation"
         />
+
+    <fragment
+        android:id="@+id/budgetingFragment"
+        android:name="com.nje.mobileszkozokprojekt.fragment.budgeting.BudgetingMainFragment"
+        android:label="@string/budgeting_label"
+        tools:layout="@layout/fragment_budgeting_main"
+        />
+
 </navigation>

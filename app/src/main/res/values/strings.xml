@@ -2,7 +2,31 @@
     <string name="app_name">MobilEszkozokProjeKt</string>
     <string name="home_page">Home Page</string>
     <string name="estimation_page">Estimation Page</string>
-    <string name="home_menu">Home</string>
-    <string name="estimation_menu">Estimation</string>
+
+    <string name="home_label">Home</string>
+    <string name="budgeting_label">Budgeting</string>
+    <string name="estimation_label">Estimation</string>
+
+    <string name="name_label">Name</string>
+    <string name="category_label">Category</string>
+    <string name="value_label">Value</string>
+
+    <string-array name="budgeting_category">
+        <item>cost</item>
+        <item>income</item>
+        <item>debt</item>
+        <item>investment</item>
+    </string-array>
+
+    <string name="cost_label">Cost</string>
+    <string name="income_label">Income</string>
+
+    <string name="add_label">Add</string>
+    <string name="clear_label">Clear</string>
+    <string name="delete_label">Delete</string>
+    <string name="update_label">Update</string>
+
+    <string name="type_input_hint">Type here!</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

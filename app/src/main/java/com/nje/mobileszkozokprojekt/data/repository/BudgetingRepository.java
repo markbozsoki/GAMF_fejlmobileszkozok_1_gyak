@@ -4,7 +4,6 @@ import com.nje.mobileszkozokprojekt.data.FinDatabase;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
 
-import java.util.Collections;
 import java.util.List;
 
 public class BudgetingRepository implements IRepository<BudgetingEntity> {
