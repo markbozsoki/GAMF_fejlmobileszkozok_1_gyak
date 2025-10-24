@@ -16,11 +16,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/budgetingAddItemButton" />
 
-    <ImageView
-        android:id="@+id/diagramPlaceholder"
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/budgetingDiagram"
         android:layout_width="0dp"
         android:layout_height="248dp"
-        android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +33,7 @@
         android:hint="@string/type_input_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diagramPlaceholder" />
+        app:layout_constraintTop_toBottomOf="@+id/budgetingDiagram" />
 
     <EditText
         android:id="@+id/budgetingValueEditTextNumberDecimal"
