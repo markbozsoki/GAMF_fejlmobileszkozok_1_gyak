@@ -10,6 +10,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.nje.mobileszkozokprojekt.data.dao.AcquiredDao;
 import com.nje.mobileszkozokprojekt.data.dao.BudgetingDao;
+import com.nje.mobileszkozokprojekt.data.dao.DatabaseDao;
 import com.nje.mobileszkozokprojekt.data.dao.UpcomingDao;
 import com.nje.mobileszkozokprojekt.data.entity.AcquiredEntity;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
@@ -24,6 +25,7 @@ import java.util.concurrent.Executors;
 }, version = 1)
 public abstract class FinDatabase extends RoomDatabase {
 
+    public abstract DatabaseDao databaseDao();
     public abstract BudgetingDao budgetingDao();
     public abstract UpcomingDao upcomingDao();
     public abstract AcquiredDao acquiredDao();
@@ -45,6 +47,7 @@ public abstract class FinDatabase extends RoomDatabase {
                             Executors.newSingleThreadExecutor().execute(() -> {
                                 FinDatabase dataBase = getInstance(context);
                                 DatabaseInitializer initializer = new DatabaseInitializer(dataBase);
+                                //initializer.clearDatabase();
                                 initializer.populateDatabase();
                             });
                         }
