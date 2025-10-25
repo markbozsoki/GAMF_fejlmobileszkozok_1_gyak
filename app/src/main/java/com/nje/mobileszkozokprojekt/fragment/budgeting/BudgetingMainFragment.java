@@ -1,5 +1,7 @@
 package com.nje.mobileszkozokprojekt.fragment.budgeting;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,18 +12,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.nje.mobileszkozokprojekt.R;
-import com.nje.mobileszkozokprojekt.data.FinDatabase;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
-import com.nje.mobileszkozokprojekt.data.repository.BudgetingRepository;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
+import com.nje.mobileszkozokprojekt.model.ColorProvider;
 import com.nje.mobileszkozokprojekt.model.Direction;
 import com.nje.mobileszkozokprojekt.model.budgeting.BudgetingItem;
 import com.nje.mobileszkozokprojekt.model.budgeting.Category;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -60,6 +67,46 @@ public class BudgetingMainFragment extends Fragment {
 
         BudgetingViewAdapter adapter = new BudgetingViewAdapter(items);
         recyclerView.setAdapter(adapter);
+
+
+        double fullIncome = (double) 0;
+        double fullCost = (double) 0;
+
+        Map<String, Double> costs = new HashMap<>();
+        for (BudgetingItem item : items) {
+            Category itemCategory = item.getCategory();
+            if (itemCategory == Category.INCOME) {
+                fullIncome += item.getValue();
+            } else {
+                fullCost += item.getValue();
+                costs.put(item.getName(), item.getValue());
+            }
+        }
+
+        PieChart diagram = view.findViewById(R.id.budgetingDiagram);
+        ArrayList<PieEntry> pieEntries = new ArrayList<>();
+        for (String key: costs.keySet()) {
+            pieEntries.add(new PieEntry(Objects.requireNonNull(costs.get(key)).floatValue(), key));
+        }
+
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, "");
+        pieDataSet.setColors(ColorProvider.CHART_TEMPLATE());
+
+        PieData pieData = new PieData(pieDataSet);
+        pieData.setValueTextSize(10);
+        pieData.setValueTypeface(Typeface.DEFAULT_BOLD);
+        diagram.setData(pieData);
+
+        diagram.setCenterText(fullIncome + " USD");
+        diagram.setHoleRadius(50);
+        if (fullCost >= fullIncome) {
+            diagram.setHoleColor(Color.RED);
+        } else {
+            diagram.setHoleColor(Color.GREEN);
+        }
+        diagram.setDrawEntryLabels(false);
+
+        diagram.getDescription().setEnabled(false);
 
         return view;
     }
