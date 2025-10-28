@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingLeft="16dp"
+    android:paddingTop="10dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/upcomingNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="NAME_PLACEHOLDER" />
+
+    <TextView
+        android:id="@+id/upcomingValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/upcomingDeleteButton"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="VALUE_PH" />
+
+    <TextView
+        android:id="@+id/upcomingTypeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/upcomingValueTextView"
+        app:layout_constraintTop_toBottomOf="@+id/upcomingValueTextView"
+        tools:text="TYPE_PH" />
+
+    <TextView
+        android:id="@+id/upcomingDueDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@+id/upcomingNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/upcomingNameTextView"
+        tools:text="DUE_DATE_PH" />
+
+    <Button
+        android:id="@+id/upcomingDeleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/delete_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/upcomingUpdateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/update_label"
+        app:layout_constraintEnd_toEndOf="@+id/upcomingDeleteButton"
+        app:layout_constraintTop_toBottomOf="@+id/upcomingDeleteButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

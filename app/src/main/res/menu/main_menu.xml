@@ -20,4 +20,11 @@
         android:title="@string/budgeting_label"
         app:showAsAction="never"
         />
+
+    <item
+        android:id="@+id/upcomingFragment"
+        android:title="@string/upcoming_label"
+        app:showAsAction="never"
+        />
+
 </menu>

@@ -1,14 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.upcoming.UpcomingMainFragment">
+    tools:context=".fragment.upcoming.UpcomingMainFragment"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/upcomingListRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upcomingAddItemButton" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/upcomingDiagram"
+        android:layout_width="0dp"
+        android:layout_height="248dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/upcomingNameTextInputEditText"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/type_input_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upcomingDiagram" />
+
+    <EditText
+        android:id="@+id/upcomingValueEditTextNumberDecimal"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:autofillHints="100"
+        android:ems="10"
+        android:hint="@string/type_input_hint"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="@+id/upcomingNameTextInputEditText"
+        app:layout_constraintTop_toBottomOf="@+id/upcomingDueDateEditText" />
+
+    <ToggleButton
+        android:id="@+id/upcomingTypeToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="25dp"
+        android:textOff="@string/cost_label"
+        android:textOn="@string/income_label"
+        app:layout_constraintBottom_toBottomOf="@+id/upcomingValueEditTextNumberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/upcomingNameTextInputEditText"
+        app:layout_constraintStart_toEndOf="@+id/upcomingValueEditTextNumberDecimal" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/upcomingNameInputTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/name_label"
+        app:layout_constraintBaseline_toBaselineOf="@+id/upcomingNameTextInputEditText"
+        app:layout_constraintEnd_toStartOf="@+id/upcomingNameTextInputEditText"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/upcomingDueDateInputTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:text="@string/dueDate_label"
+        app:layout_constraintBaseline_toBaselineOf="@+id/upcomingDueDateEditText"
+        app:layout_constraintEnd_toEndOf="@+id/upcomingNameInputTextView" />
+
+    <TextView
+        android:id="@+id/upcomingValueInputTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/value_label"
+        app:layout_constraintBaseline_toBaselineOf="@+id/upcomingValueEditTextNumberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/upcomingNameInputTextView" />
+
+    <Button
+        android:id="@+id/upcomingAddItemButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/add_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upcomingValueEditTextNumberDecimal" />
+
+    <Button
+        android:id="@+id/upcomingClearAllInputButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="45dp"
+        android:text="@string/clear_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/upcomingAddItemButton" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/upcomingDueDateEditText"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:hint="@string/select_due_date"
+        app:layout_constraintEnd_toEndOf="@+id/upcomingNameTextInputEditText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/upcomingNameTextInputEditText"
+        app:layout_constraintTop_toBottomOf="@+id/upcomingNameTextInputEditText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

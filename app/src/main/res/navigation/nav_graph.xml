@@ -26,4 +26,11 @@
         tools:layout="@layout/fragment_budgeting_main"
         />
 
+    <fragment
+        android:id="@+id/upcomingFragment"
+        android:name="com.nje.mobileszkozokprojekt.fragment.upcoming.UpcomingMainFragment"
+        android:label=""
+        tools:layout="@layout/fragment_upcoming_main"
+        />
+
 </navigation>

@@ -39,6 +39,7 @@ The app can also help visualize the current and predicted state of the user's as
 - added MPAndroidChart library (JitPack repo + libs.versions.toml + app module) using (https://github.com/PhilJay/MPAndroidChart)
 - added DB dependencies
 - added UpcomingEntity, UpcomingDao, UpcomingRepository, and updated FinDatabase 
+- implemented the upcoming view frame and list load with no button functionalities 
 
 </details>
 
