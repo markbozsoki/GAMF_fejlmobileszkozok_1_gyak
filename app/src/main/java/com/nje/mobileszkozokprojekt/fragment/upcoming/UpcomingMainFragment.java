@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nje.mobileszkozokprojekt.R;
 import com.nje.mobileszkozokprojekt.data.entity.UpcomingEntity;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
+import com.nje.mobileszkozokprojekt.model.Direction;
 import com.nje.mobileszkozokprojekt.model.upcoming.UpcomingItem;
 
 import java.util.ArrayList;
@@ -57,7 +58,13 @@ public class UpcomingMainFragment extends Fragment {
         List<UpcomingEntity> entities = upcomingRepository.getAll();
         List<UpcomingItem> items = new ArrayList<>();
         for (UpcomingEntity entity : entities) {
-            items.add(new UpcomingItem(entity));
+            UpcomingItem upcomingItem = new UpcomingItem(
+                    entity.getName(),
+                    Direction.valueOf(entity.getType().toUpperCase()),
+                    entity.getValue(),
+                    entity.getDueDate()
+            );
+            items.add(upcomingItem);
         }
 
         RecyclerView recyclerView = view.findViewById(R.id.upcomingListRecyclerView);
