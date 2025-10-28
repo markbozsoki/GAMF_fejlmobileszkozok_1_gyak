@@ -31,5 +31,6 @@
     <string name="dueDate_label">Due Date</string>
     <string name="select_due_date">Select due date</string>
     <string name="hello_blank_fragment" />
+    <string name="upcoming_label">Upcoming</string>
 
 </resources>
