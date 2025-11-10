@@ -1,14 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.acquired.AcquiredMainFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/acquiredDiagram"
+        android:layout_width="0dp"
+        android:layout_height="248dp"
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/acquiredNameTextInputEditText"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/type_input_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/acquiredDiagram" />
+
+    <TextView
+        android:id="@+id/acquiredNameInputTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
+        android:breakStrategy="simple"
+        android:text="@string/name_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/acquiredNameTextInputEditText"
+        app:layout_constraintEnd_toStartOf="@+id/acquiredNameTextInputEditText"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/acquiredCategorySpinner"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:entries="@array/acquired_category"
+        app:layout_constraintStart_toStartOf="@+id/acquiredNameTextInputEditText"
+        app:layout_constraintTop_toBottomOf="@+id/acquiredNameTextInputEditText" />
+
+    <TextView
+        android:id="@+id/acquiredCategoryInputTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/category_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/acquiredCategorySpinner"
+        app:layout_constraintEnd_toEndOf="@+id/acquiredNameInputTextView" />
+
+    <EditText
+        android:id="@+id/acquiredValueEditTextNumberDecimal"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:autofillHints="100"
+        android:ems="10"
+        android:hint="@string/type_input_hint"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="@+id/acquiredNameTextInputEditText"
+        app:layout_constraintTop_toBottomOf="@+id/acquiredCategorySpinner" />
+
+    <TextView
+        android:id="@+id/acquiredValueInputTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/value_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/acquiredValueEditTextNumberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/acquiredNameInputTextView" />
+
+    <ToggleButton
+        android:id="@+id/acquiredTypeToggleButtonton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="25dp"
+        android:textOff="@string/acquired_label"
+        android:textOn="@string/outgoing_label"
+        app:layout_constraintBottom_toBottomOf="@+id/acquiredValueEditTextNumberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/acquiredValueEditTextNumberDecimal" />
+
+    <Button
+        android:id="@+id/acquiredAddItemButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/add_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/acquiredValueEditTextNumberDecimal" />
+
+    <Button
+        android:id="@+id/acquiredClearAllInputButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="45dp"
+        android:text="@string/clear_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/acquiredAddItemButton" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/acquiredListRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/acquiredAddItemButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
