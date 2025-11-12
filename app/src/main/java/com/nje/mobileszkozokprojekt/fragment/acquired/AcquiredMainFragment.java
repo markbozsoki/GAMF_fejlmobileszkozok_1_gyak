@@ -68,17 +68,19 @@ public class AcquiredMainFragment extends Fragment {
             List<Integer> colors = new ArrayList<>();
 
             final int green = Color.rgb(110, 190, 102);
-            final int red   = Color.rgb(211, 74, 88);
 
             for (int i = 0; i < items.size(); i++) {
                 AcquiredItem it = items.get(i);
+
+                if (it.getType() == CategoryProvider.OUTGOING) {
+                    continue;
+                }
+
                 labels.add(it.getName());
 
                 float y = (float) it.getValue();
-                if (it.getType() == CategoryProvider.OUTGOING) y = -Math.abs(y);
-
-                entries.add(new BarEntry(i, y));
-                colors.add(y >= 0 ? green : red);
+                entries.add(new BarEntry(labels.size() - 1, y));
+                colors.add(green);
             }
 
             BarDataSet set = new BarDataSet(entries, "Values");
