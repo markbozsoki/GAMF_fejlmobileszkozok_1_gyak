@@ -2,8 +2,10 @@ package com.nje.mobileszkozokprojekt.data;
 
 import android.content.Context;
 
+import com.nje.mobileszkozokprojekt.data.entity.AcquiredEntity;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
 import com.nje.mobileszkozokprojekt.data.entity.UpcomingEntity;
+import com.nje.mobileszkozokprojekt.data.repository.AcquiredRepository;
 import com.nje.mobileszkozokprojekt.data.repository.BudgetingRepository;
 import com.nje.mobileszkozokprojekt.data.repository.UpcomingRepository;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
@@ -36,5 +38,11 @@ public class DatabaseModule {
     @Singleton
     public IRepository<UpcomingEntity> provideUpcomingRepository(FinDatabase database) {
         return new UpcomingRepository(database);
+    }
+
+    @Provides
+    @Singleton
+    public  IRepository<AcquiredEntity> provideAcquiredRepository(FinDatabase database) {
+        return new AcquiredRepository(database);
     }
 }

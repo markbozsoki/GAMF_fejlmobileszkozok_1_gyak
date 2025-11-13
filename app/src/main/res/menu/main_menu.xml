@@ -27,4 +27,9 @@
         app:showAsAction="never"
         />
 
+    <item
+        android:id="@+id/acquiredFragment"
+        android:title="@string/acquired_label_menu"
+        app:showAsAction="never"
+        />
 </menu>

@@ -33,4 +33,11 @@
         tools:layout="@layout/fragment_upcoming_main"
         />
 
+    <fragment
+        android:id="@+id/acquiredFragment"
+        android:name="com.nje.mobileszkozokprojekt.fragment.acquired.AcquiredMainFragment"
+        android:label="@string/acquired_label"
+        tools:layout="@layout/fragment_acquired_main"
+        />
+
 </navigation>

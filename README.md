@@ -64,6 +64,11 @@ The app can also help visualize the current and predicted state of the user's as
 - Wrote base CRUD functions in AcquiredRepository
 - Update the DatabaseInitializer with starting values
 - Update the FinDatabase with acquiredDao
+- Base functions and list views for Acquired Page
+   - AcquiredMainFragment
+   - AcquiredViewAdapter
+   - AcquiredViewHolder
+- AcquiredItem and CategoryProvider classes for view injections
 
 </details>
 

@@ -32,5 +32,14 @@
     <string name="select_due_date">Select due date</string>
     <string name="hello_blank_fragment" />
     <string name="upcoming_label">Upcoming</string>
+    <string name="acquired_label">Acquired</string>
+    <string name="outgoing_label">outgoing</string>
+    <string name="acquired_label_menu">Acquired</string>
 
+    <string-array name="acquired_category">
+        <item>property</item>
+        <item>vehicle</item>
+        <item>goods</item>
+        <item>currency</item>
+    </string-array>
 </resources>
