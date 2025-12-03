@@ -11,11 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.google.android.material.textfield.TextInputEditText;
 import com.nje.mobileszkozokprojekt.R;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
@@ -37,6 +42,13 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class BudgetingMainFragment extends Fragment {
 
+    private TextInputEditText nameInputText;
+    private Spinner categorySpinner;
+    private EditText valueEditText;
+    private ToggleButton typeToggleButton;
+    private Button addItemButton;
+    private Button clearButton;
+
     @Inject
     IRepository<BudgetingEntity> budgetingRepository;
 
@@ -47,6 +59,14 @@ public class BudgetingMainFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         View view = inflater.inflate(R.layout.fragment_budgeting_main, container, false);
+
+        nameInputText = view.findViewById(R.id.budgetingNameTextInputEditText);
+        categorySpinner = view.findViewById(R.id.budgetingCategorySpinner);
+        valueEditText = view.findViewById(R.id.budgetingValueEditTextNumberDecimal);
+        typeToggleButton = view.findViewById(R.id.budgetingTypeToggleButton);
+
+        addItemButton = view.findViewById(R.id.budgetingAddItemButton);
+        clearButton = view.findViewById(R.id.budgetingClearAllInputButton);
 
         List<BudgetingEntity> entities = budgetingRepository.getAll();
         List<BudgetingItem> items = new ArrayList<>();
