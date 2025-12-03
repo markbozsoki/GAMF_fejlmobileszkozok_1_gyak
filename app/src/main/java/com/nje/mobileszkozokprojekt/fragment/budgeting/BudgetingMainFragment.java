@@ -79,16 +79,9 @@ public class BudgetingMainFragment extends Fragment {
         List<BudgetingEntity> entities = budgetingRepository.getAll();
         List<BudgetingItem> items = new ArrayList<>();
         for (BudgetingEntity entity : entities) {
-            BudgetingItem budgetingItem = new BudgetingItem(
-                    entity.getName(),
-                    Direction.valueOf(entity.getType().toUpperCase()),
-                    Category.valueOf(entity.getCategory().toUpperCase()),
-                    entity.getValue()
-            );
+            BudgetingItem budgetingItem = budgetingEntityToItem(entity);
             items.add(budgetingItem);
         }
-
-        RecyclerView recyclerView = view.findViewById(R.id.budgetingListRecyclerView);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity().getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -137,6 +130,15 @@ public class BudgetingMainFragment extends Fragment {
         diagram.getDescription().setEnabled(false);
 
         return view;
+    }
+
+    private BudgetingItem budgetingEntityToItem(BudgetingEntity entity) {
+        return new BudgetingItem(
+                entity.getName(),
+                Direction.valueOf(entity.getType().toUpperCase()),
+                Category.valueOf(entity.getCategory().toUpperCase()),
+                entity.getValue()
+        );
     }
 
     private void clearInputs(){
