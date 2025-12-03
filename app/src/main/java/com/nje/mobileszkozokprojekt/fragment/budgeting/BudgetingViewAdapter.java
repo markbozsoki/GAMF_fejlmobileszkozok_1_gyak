@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nje.mobileszkozokprojekt.R;
+import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
+import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
 import com.nje.mobileszkozokprojekt.model.budgeting.BudgetingItem;
 
 import java.util.List;
@@ -15,11 +17,14 @@ import java.util.List;
 public class BudgetingViewAdapter extends RecyclerView.Adapter<BudgetingViewHolder> {
 
     private final List<BudgetingItem> budgetingItems;
+    private final IRepository<BudgetingEntity> repository;
 
     public BudgetingViewAdapter(
-            List<BudgetingItem> budgetingItems
+            List<BudgetingItem> budgetingItems,
+            IRepository<BudgetingEntity> repository
     ) {
         this.budgetingItems = budgetingItems;
+        this.repository = repository;
     }
 
     @NonNull
@@ -44,6 +49,14 @@ public class BudgetingViewAdapter extends RecyclerView.Adapter<BudgetingViewHold
         holder.typeTextView.setText(type);
         holder.categoryTextView.setText(category);
         holder.valueTextView.setText(value);
+
+        holder.deleteButton.setOnClickListener(v -> {
+            BudgetingItem itemToRemove = budgetingItems.get(position);
+            BudgetingEntity entityToRemove = repository.getById(String.valueOf(itemToRemove.getId()));
+            repository.delete(entityToRemove);
+            budgetingItems.remove(position);
+            notifyItemRemoved(position);
+        });
     }
 
     @Override

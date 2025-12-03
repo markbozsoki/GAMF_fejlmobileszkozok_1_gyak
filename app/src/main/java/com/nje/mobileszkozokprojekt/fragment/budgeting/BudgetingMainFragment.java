@@ -94,7 +94,7 @@ public class BudgetingMainFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity().getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new BudgetingViewAdapter(items);
+        adapter = new BudgetingViewAdapter(items, budgetingRepository);
         recyclerView.setAdapter(adapter);
 
 
