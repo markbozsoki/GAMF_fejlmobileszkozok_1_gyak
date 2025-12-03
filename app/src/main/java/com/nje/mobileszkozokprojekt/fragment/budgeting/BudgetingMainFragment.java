@@ -68,6 +68,14 @@ public class BudgetingMainFragment extends Fragment {
         addItemButton = view.findViewById(R.id.budgetingAddItemButton);
         clearButton = view.findViewById(R.id.budgetingClearAllInputButton);
 
+        addItemButton.setOnClickListener(v -> {
+
+        });
+
+        clearButton.setOnClickListener(v -> {
+
+        });
+
         List<BudgetingEntity> entities = budgetingRepository.getAll();
         List<BudgetingItem> items = new ArrayList<>();
         for (BudgetingEntity entity : entities) {
