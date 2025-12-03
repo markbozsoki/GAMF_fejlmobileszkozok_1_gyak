@@ -73,7 +73,7 @@ public class BudgetingMainFragment extends Fragment {
         });
 
         clearButton.setOnClickListener(v -> {
-
+            clearInputs();
         });
 
         List<BudgetingEntity> entities = budgetingRepository.getAll();
@@ -137,5 +137,13 @@ public class BudgetingMainFragment extends Fragment {
         diagram.getDescription().setEnabled(false);
 
         return view;
+    }
+
+    private void clearInputs(){
+        Objects.requireNonNull(nameInputText.getText()).clear();
+        valueEditText.getText().clear();
+        categorySpinner.setSelection(0);
+        String typeToggleButtonOffText = getResources().getString(R.string.cost_label);
+        typeToggleButton.setText(typeToggleButtonOffText);
     }
 }
