@@ -1,5 +1,7 @@
 package com.nje.mobileszkozokprojekt.fragment.budgeting;
 
+import static java.lang.Double.parseDouble;
+
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -46,8 +49,9 @@ public class BudgetingMainFragment extends Fragment {
     private Spinner categorySpinner;
     private EditText valueEditText;
     private ToggleButton typeToggleButton;
-    private Button addItemButton;
-    private Button clearButton;
+
+    List<BudgetingItem> items = new ArrayList<>();
+    BudgetingViewAdapter adapter;
 
     @Inject
     IRepository<BudgetingEntity> budgetingRepository;
@@ -59,17 +63,22 @@ public class BudgetingMainFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         View view = inflater.inflate(R.layout.fragment_budgeting_main, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.budgetingListRecyclerView);
 
         nameInputText = view.findViewById(R.id.budgetingNameTextInputEditText);
         categorySpinner = view.findViewById(R.id.budgetingCategorySpinner);
         valueEditText = view.findViewById(R.id.budgetingValueEditTextNumberDecimal);
         typeToggleButton = view.findViewById(R.id.budgetingTypeToggleButton);
 
-        addItemButton = view.findViewById(R.id.budgetingAddItemButton);
-        clearButton = view.findViewById(R.id.budgetingClearAllInputButton);
+        Button addItemButton = view.findViewById(R.id.budgetingAddItemButton);
+        Button clearButton = view.findViewById(R.id.budgetingClearAllInputButton);
 
         addItemButton.setOnClickListener(v -> {
-
+            BudgetingItem newItem = createNewEntity();
+            items.add(newItem);
+            adapter.notifyItemInserted(items.size() - 1);
+            clearInputs();
+            Toast.makeText(this.getActivity(), "\"" + newItem.getName() + "\" added!", Toast.LENGTH_SHORT).show();
         });
 
         clearButton.setOnClickListener(v -> {
@@ -77,7 +86,6 @@ public class BudgetingMainFragment extends Fragment {
         });
 
         List<BudgetingEntity> entities = budgetingRepository.getAll();
-        List<BudgetingItem> items = new ArrayList<>();
         for (BudgetingEntity entity : entities) {
             BudgetingItem budgetingItem = budgetingEntityToItem(entity);
             items.add(budgetingItem);
@@ -86,7 +94,7 @@ public class BudgetingMainFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity().getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        BudgetingViewAdapter adapter = new BudgetingViewAdapter(items);
+        adapter = new BudgetingViewAdapter(items);
         recyclerView.setAdapter(adapter);
 
 
@@ -147,5 +155,28 @@ public class BudgetingMainFragment extends Fragment {
         categorySpinner.setSelection(0);
         String typeToggleButtonOffText = getResources().getString(R.string.cost_label);
         typeToggleButton.setText(typeToggleButtonOffText);
+    }
+
+    private BudgetingItem createNewEntity() {
+        BudgetingEntity newEntity = new BudgetingEntity();
+
+        newEntity.setName(Objects.requireNonNull(nameInputText.getText()).toString());
+        newEntity.setCategory(categorySpinner.getSelectedItem().toString());
+
+        String valueString = valueEditText.getText().toString();
+        if (valueString.isBlank()) {
+            newEntity.setValue(0);
+        } else {
+            newEntity.setValue(parseDouble(valueString));
+        }
+
+        if (typeToggleButton.getText().toString().equals(getResources().getString(R.string.cost_label))) {
+            newEntity.setType(Direction.OUTGOING.toString());
+        } else {
+            newEntity.setType(Direction.INCOMING.toString());
+        }
+
+        budgetingRepository.insert(newEntity);
+        return budgetingEntityToItem(newEntity);
     }
 }
