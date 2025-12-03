@@ -94,9 +94,8 @@ public class BudgetingMainFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity().getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new BudgetingViewAdapter(items, budgetingRepository);
+        adapter = new BudgetingViewAdapter(items, budgetingRepository, view, getActivity());
         recyclerView.setAdapter(adapter);
-
 
         double fullIncome = (double) 0;
         double fullCost = (double) 0;
