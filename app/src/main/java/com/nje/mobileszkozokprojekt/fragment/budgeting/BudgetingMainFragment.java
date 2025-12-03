@@ -142,6 +142,7 @@ public class BudgetingMainFragment extends Fragment {
 
     private BudgetingItem budgetingEntityToItem(BudgetingEntity entity) {
         return new BudgetingItem(
+                entity.getId(),
                 entity.getName(),
                 Direction.valueOf(entity.getType().toUpperCase()),
                 Category.valueOf(entity.getCategory().toUpperCase()),
