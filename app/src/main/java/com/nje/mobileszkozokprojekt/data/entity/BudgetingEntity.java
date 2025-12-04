@@ -1,6 +1,7 @@
 package com.nje.mobileszkozokprojekt.data.entity;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.nje.mobileszkozokprojekt.data.entity.interfaces.IEntityWithId;
@@ -15,6 +16,9 @@ public class BudgetingEntity implements IEntityWithId {
     private String category;
     private double value; // in USD
 
+    public BudgetingEntity() {}
+
+    @Ignore
     public BudgetingEntity(
             int id,
             String name,

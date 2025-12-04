@@ -81,6 +81,7 @@ The app can also help visualize the current and predicted state of the user's as
 - added baseclasses for DB repositories
 - added Hilt as dependency injection framework
 - implemented the budgeting view frame and list load with no button functionalities  
+- added button actions to update the list of budgeting items
 
 </details>
 
