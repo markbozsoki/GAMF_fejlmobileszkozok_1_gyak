@@ -1,6 +1,7 @@
 package com.nje.mobileszkozokprojekt.fragment.acquired;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,8 @@ public class AcquiredViewHolder extends RecyclerView.ViewHolder {
     public TextView typeTextView;
     public TextView categoryTextView;
     public TextView valueTextView;
+    public Button deleteButton;
+    public Button updateButton;
 
     public AcquiredViewHolder(View itemView) {
         super(itemView);
@@ -21,5 +24,8 @@ public class AcquiredViewHolder extends RecyclerView.ViewHolder {
         typeTextView = itemView.findViewById(R.id.acquiredTypeTextView);
         categoryTextView = itemView.findViewById(R.id.acquiredCategoryTextView);
         valueTextView = itemView.findViewById(R.id.acquiredValueTextView);
+
+        deleteButton = itemView.findViewById(R.id.acquiredDeleteButton);
+        updateButton = itemView.findViewById(R.id.acquiredUpdateButton);
     }
 }

@@ -1,10 +1,17 @@
 package com.nje.mobileszkozokprojekt.fragment.acquired;
 
+import static java.lang.Double.parseDouble;
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +24,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.google.android.material.textfield.TextInputEditText;
 import com.nje.mobileszkozokprojekt.R;
 import com.nje.mobileszkozokprojekt.data.entity.AcquiredEntity;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
@@ -25,7 +33,7 @@ import com.nje.mobileszkozokprojekt.model.acquired.CategoryProvider;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -34,29 +42,52 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class AcquiredMainFragment extends Fragment {
 
+    private TextInputEditText nameInputText;
+    private Spinner categorySpinner;
+    private EditText valueEditText;
+    private ToggleButton typeToggleButton;
+
+    List<AcquiredItem> items = new ArrayList<>();
+    AcquiredViewAdapter adapter;
+
     @Inject
     IRepository<AcquiredEntity> acquiredRepository;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceBundle) {
         View view = inflater.inflate(R.layout.fragment_acquired_main, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.acquiredListRecyclerView);
+
+        nameInputText = view.findViewById(R.id.acquiredNameTextInputEditText);
+        categorySpinner = view.findViewById(R.id.acquiredCategorySpinner);
+        valueEditText = view.findViewById(R.id.acquiredValueEditTextNumberDecimal);
+        typeToggleButton = view.findViewById(R.id.acquiredTypeToggleButtonton);
+
+        Button addItemButton = view.findViewById(R.id.acquiredAddItemButton);
+        Button clearButton = view.findViewById(R.id.acquiredClearAllInputButton);
+
+        addItemButton.setOnClickListener(v-> {
+            AcquiredItem newItem = createNewEntity();
+            items.add(newItem);
+            adapter.notifyItemInserted(items.size() - 1);
+            clearInputs();
+            Toast.makeText(this.getActivity(), "\"" + newItem.getName() + "\" added!", Toast.LENGTH_SHORT).show();
+        });
+
+        clearButton.setOnClickListener(v-> {
+            clearInputs();
+        });
 
         List<AcquiredEntity> entities = acquiredRepository.getAll();
-        if (entities == null || entities.isEmpty()) return view;
-
-        List<AcquiredItem> items = new ArrayList<>();
         for (AcquiredEntity entity : entities) {
-            items.add(new AcquiredItem(
-                    entity.getName(),
-                    CategoryProvider.valueOf(entity.getType().toUpperCase(Locale.ROOT)),
-                    CategoryProvider.valueOf(entity.getCategory().toUpperCase(Locale.ROOT)),
-                    entity.getValue()
-            ));
+            AcquiredItem acquiredItem = acquiredEntityToItem(entity);
+            items.add(acquiredItem);
         }
 
-        RecyclerView recyclerView = view.findViewById(R.id.acquiredListRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        AcquiredViewAdapter adapter = new AcquiredViewAdapter(items);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity().getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        adapter = new AcquiredViewAdapter(items, acquiredRepository, view, getActivity());
         recyclerView.setAdapter(adapter);
 
         BarChart chart = view.findViewById(R.id.acquiredDiagram);
@@ -141,5 +172,41 @@ public class AcquiredMainFragment extends Fragment {
         left.setZeroLineWidth(0.7f);
 
         chart.getAxisRight().setEnabled(false);
+    }
+
+    private AcquiredItem acquiredEntityToItem(AcquiredEntity entity) {
+        return new AcquiredItem(
+                entity.getId(),
+                entity.getName(),
+                CategoryProvider.valueOf(entity.getType().toUpperCase()),
+                CategoryProvider.valueOf(entity.getCategory().toUpperCase()),
+                entity.getValue()
+        );
+    }
+
+    private void clearInputs() {
+        Objects.requireNonNull(nameInputText.getText()).clear();
+        valueEditText.getText().clear();
+        categorySpinner.setSelection(0);
+        typeToggleButton.setChecked(false);
+    }
+
+    private AcquiredItem createNewEntity() {
+        AcquiredEntity newEntity = new AcquiredEntity();
+
+        newEntity.setName(Objects.requireNonNull(nameInputText.getText()).toString());
+        newEntity.setCategory(categorySpinner.getSelectedItem().toString());
+
+        String valueString = valueEditText.getText().toString();
+        if (valueString.isBlank()) {
+            newEntity.setValue(0);
+        } else {
+            newEntity.setValue(parseDouble(valueString));
+        }
+
+        newEntity.setType(typeToggleButton.isChecked() ? CategoryProvider.OUTGOING.toString() : CategoryProvider.ACQUIRED.toString());
+
+        acquiredRepository.insert(newEntity);
+        return acquiredEntityToItem(newEntity);
     }
 }

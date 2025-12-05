@@ -69,6 +69,7 @@ The app can also help visualize the current and predicted state of the user's as
    - AcquiredViewAdapter
    - AcquiredViewHolder
 - AcquiredItem and CategoryProvider classes for view injections
+- implementing the button functions
 
 </details>
 
