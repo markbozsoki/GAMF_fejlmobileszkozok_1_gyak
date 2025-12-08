@@ -100,17 +100,14 @@ public class UpcomingMainFragment extends Fragment {
         List<UpcomingEntity> entities = upcomingRepository.getAll();
         if (entities == null || entities.isEmpty()) return view;
 
-        List<UpcomingItem> items = new ArrayList<>();
         List<String> labels = new ArrayList<>();
+        List<UpcomingItem> items = new ArrayList<>();
 
         for (UpcomingEntity entity : entities) {
-            items.add(new UpcomingItem(
-                    entity.getName(),
-                    Direction.valueOf(entity.getType().toUpperCase()),
-                    entity.getValue(),
-                    entity.getDueDate()
-            ));
-            labels.add(formatDate(entity.getDueDate()));
+            UpcomingItem upcomingItem = upcomingEntityToItem(entity);
+            items.add(upcomingItem);
+
+            labels.add(formatDate(upcomingItem.getDueDate()));
         }
 
         RecyclerView recyclerView = view.findViewById(R.id.upcomingListRecyclerView);
@@ -166,6 +163,15 @@ public class UpcomingMainFragment extends Fragment {
         chart.invalidate();
 
         return view;
+    }
+
+    private UpcomingItem upcomingEntityToItem(UpcomingEntity entity) {
+        return new UpcomingItem(
+                entity.getName(),
+                Direction.valueOf(entity.getType().toUpperCase()),
+                entity.getValue(),
+                entity.getDueDate()
+        );
     }
 
     private void clearInputs(){
