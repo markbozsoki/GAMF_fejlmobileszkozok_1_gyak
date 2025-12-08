@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MobilEszkozokProjeKt</string>
-    <string name="home_page">Home Page</string>
+    <string name="home_page">Welcome to your Personalised Budgeting App!</string>
     <string name="estimation_page">Estimation Page</string>
 
     <string name="home_label">Home</string>
@@ -35,6 +35,10 @@
     <string name="acquired_label">Acquired</string>
     <string name="outgoing_label">outgoing</string>
     <string name="acquired_label_menu">Acquired</string>
+    <string name="estimationHomePageNavButtonText">Wealth estimation</string>
+    <string name="upcomingHomePageNavButtonText">Upcoming expenses and incomes</string>
+    <string name="budgetingHomePageNavButtonText">Mounthly budgeting</string>
+    <string name="acquiredHomePageNavButtonText">Your wealth</string>
 
     <string-array name="acquired_category">
         <item>property</item>
