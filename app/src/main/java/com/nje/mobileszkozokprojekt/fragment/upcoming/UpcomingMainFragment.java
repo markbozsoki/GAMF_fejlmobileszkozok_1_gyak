@@ -119,7 +119,7 @@ public class UpcomingMainFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity().getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new UpcomingViewAdapter(items);
+        adapter = new UpcomingViewAdapter(items, upcomingRepository);
         recyclerView.setAdapter(adapter);
 
         BarChart chart = view.findViewById(R.id.upcomingDiagram);
