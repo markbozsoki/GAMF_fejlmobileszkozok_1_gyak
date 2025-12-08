@@ -83,7 +83,6 @@ public class UpcomingMainFragment extends Fragment {
 
         clearButton.setOnClickListener(v -> clearInputs());
 
-        final EditText dueDateEditText = view.findViewById(R.id.upcomingDueDateEditText);
         dueDateEditText.setFocusable(false);
         dueDateEditText.setFocusableInTouchMode(false);
 
