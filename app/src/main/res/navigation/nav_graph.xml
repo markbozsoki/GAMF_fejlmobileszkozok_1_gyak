@@ -50,7 +50,7 @@
     <fragment
         android:id="@+id/upcomingFragment"
         android:name="com.nje.mobileszkozokprojekt.fragment.upcoming.UpcomingMainFragment"
-        android:label=""
+        android:label="@string/upcoming_label"
         tools:layout="@layout/fragment_upcoming_main"
         >
         <action
