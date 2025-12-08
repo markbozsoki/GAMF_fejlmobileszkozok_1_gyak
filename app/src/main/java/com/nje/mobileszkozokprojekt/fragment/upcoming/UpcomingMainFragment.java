@@ -67,6 +67,14 @@ public class UpcomingMainFragment extends Fragment {
         addItemButton = view.findViewById(R.id.upcomingAddItemButton);
         clearButton = view.findViewById(R.id.upcomingClearAllInputButton);
 
+        addItemButton.setOnClickListener(v -> {
+
+        });
+
+        clearButton.setOnClickListener(v -> {
+
+        });
+
         final EditText dueDateEditText = view.findViewById(R.id.upcomingDueDateEditText);
         dueDateEditText.setFocusable(false);
         dueDateEditText.setFocusableInTouchMode(false);
