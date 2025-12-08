@@ -1,6 +1,7 @@
 package com.nje.mobileszkozokprojekt.fragment.upcoming;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +13,8 @@ public class UpcomingViewHolder extends RecyclerView.ViewHolder {
     public TextView typeTextView;
     public TextView valueTextView;
     public TextView dueDateTextView;
+    public Button deleteButton;
+    public Button updateButton;
 
     public UpcomingViewHolder(View itemView) {
         super(itemView);
@@ -19,5 +22,8 @@ public class UpcomingViewHolder extends RecyclerView.ViewHolder {
         typeTextView = itemView.findViewById(R.id.upcomingTypeTextView);
         valueTextView = itemView.findViewById(R.id.upcomingValueTextView);
         dueDateTextView = itemView.findViewById(R.id.upcomingDueDateTextView);
+
+        deleteButton = itemView.findViewById(R.id.upcomingDeleteButton);
+        updateButton = itemView.findViewById(R.id.upcomingUpdateButton);
     }
 }

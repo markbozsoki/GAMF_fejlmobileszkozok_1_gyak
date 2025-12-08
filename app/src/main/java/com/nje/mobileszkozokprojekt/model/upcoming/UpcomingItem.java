@@ -3,21 +3,33 @@ package com.nje.mobileszkozokprojekt.model.upcoming;
 import com.nje.mobileszkozokprojekt.model.Direction;
 
 public class UpcomingItem {
+
+    private int id;
     private String name;
     private Direction type;
     private double value;
     private String dueDate;
 
     public UpcomingItem(
+            int id,
             String name,
             Direction type,
             double value,
             String dueDate
     ) {
+        this.id = id;
         this.name = name;
         this.type = type;
         this.value = value;
         this.dueDate = dueDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

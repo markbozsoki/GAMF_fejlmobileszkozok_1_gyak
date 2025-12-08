@@ -1,6 +1,7 @@
 package com.nje.mobileszkozokprojekt.data.entity;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.nje.mobileszkozokprojekt.data.entity.interfaces.IEntityWithId;
@@ -15,6 +16,9 @@ public class UpcomingEntity implements IEntityWithId {
     private double value; // in USD
     private String dueDate;
 
+    public UpcomingEntity() {}
+
+    @Ignore
     public UpcomingEntity(
             int id,
             String name,

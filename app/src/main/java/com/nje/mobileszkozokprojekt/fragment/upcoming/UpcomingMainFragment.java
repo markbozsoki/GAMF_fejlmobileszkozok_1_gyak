@@ -1,11 +1,16 @@
 package com.nje.mobileszkozokprojekt.fragment.upcoming;
 
+import static java.lang.Double.parseDouble;
+
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -19,6 +24,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.google.android.material.textfield.TextInputEditText;
 import com.nje.mobileszkozokprojekt.R;
 import com.nje.mobileszkozokprojekt.data.entity.UpcomingEntity;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
@@ -31,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -38,6 +45,14 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class UpcomingMainFragment extends Fragment {
+
+    private TextInputEditText nameInputText;
+    private TextInputEditText dueDateEditText;
+    private EditText valueEditText;
+    private ToggleButton typeToggleButton;
+
+    List<UpcomingItem> items = new ArrayList<>();
+    UpcomingViewAdapter adapter;
 
     @Inject
     IRepository<UpcomingEntity> upcomingRepository;
@@ -48,8 +63,26 @@ public class UpcomingMainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_upcoming_main, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.upcomingListRecyclerView);
 
-        final EditText dueDateEditText = view.findViewById(R.id.upcomingDueDateEditText);
+        nameInputText = view.findViewById(R.id.upcomingNameTextInputEditText);
+        dueDateEditText = view.findViewById(R.id.upcomingDueDateEditText);
+        valueEditText = view.findViewById(R.id.upcomingValueEditTextNumberDecimal);
+        typeToggleButton = view.findViewById(R.id.upcomingTypeToggleButton);
+
+        Button addItemButton = view.findViewById(R.id.upcomingAddItemButton);
+        Button clearButton = view.findViewById(R.id.upcomingClearAllInputButton);
+
+        addItemButton.setOnClickListener(v -> {
+            UpcomingItem newItem = createNewEntity();
+            items.add(newItem);
+            adapter.notifyItemInserted(items.size() - 1);
+            clearInputs();
+            Toast.makeText(this.getActivity(), "\"" + newItem.getName() + "\" added!", Toast.LENGTH_SHORT).show();
+        });
+
+        clearButton.setOnClickListener(v -> clearInputs());
+
         dueDateEditText.setFocusable(false);
         dueDateEditText.setFocusableInTouchMode(false);
 
@@ -73,22 +106,19 @@ public class UpcomingMainFragment extends Fragment {
         List<UpcomingEntity> entities = upcomingRepository.getAll();
         if (entities == null || entities.isEmpty()) return view;
 
-        List<UpcomingItem> items = new ArrayList<>();
         List<String> labels = new ArrayList<>();
 
         for (UpcomingEntity entity : entities) {
-            items.add(new UpcomingItem(
-                    entity.getName(),
-                    Direction.valueOf(entity.getType().toUpperCase()),
-                    entity.getValue(),
-                    entity.getDueDate()
-            ));
-            labels.add(formatDate(entity.getDueDate()));
+            UpcomingItem upcomingItem = upcomingEntityToItem(entity);
+            items.add(upcomingItem);
+
+            labels.add(formatDate(upcomingItem.getDueDate()));
         }
 
-        RecyclerView recyclerView = view.findViewById(R.id.upcomingListRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        UpcomingViewAdapter adapter = new UpcomingViewAdapter(items);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity().getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        adapter = new UpcomingViewAdapter(items, upcomingRepository, view);
         recyclerView.setAdapter(adapter);
 
         BarChart chart = view.findViewById(R.id.upcomingDiagram);
@@ -139,6 +169,45 @@ public class UpcomingMainFragment extends Fragment {
         chart.invalidate();
 
         return view;
+    }
+
+    private UpcomingItem upcomingEntityToItem(UpcomingEntity entity) {
+        return new UpcomingItem(
+                entity.getId(),
+                entity.getName(),
+                Direction.valueOf(entity.getType().toUpperCase()),
+                entity.getValue(),
+                entity.getDueDate()
+        );
+    }
+
+    private void clearInputs(){
+        Objects.requireNonNull(nameInputText.getText()).clear();
+        Objects.requireNonNull(dueDateEditText.getText()).clear();
+        valueEditText.getText().clear();
+        typeToggleButton.setChecked(false);
+    }
+
+    private UpcomingItem createNewEntity() {
+        UpcomingEntity newEntity = new UpcomingEntity();
+        newEntity.setName(Objects.requireNonNull(nameInputText.getText()).toString());
+        newEntity.setDueDate(Objects.requireNonNull(dueDateEditText.getText()).toString());
+
+        String valueString = valueEditText.getText().toString();
+        if (valueString.isBlank()) {
+            newEntity.setValue(0);
+        } else {
+            newEntity.setValue(parseDouble(valueString));
+        }
+
+        if (typeToggleButton.isChecked()) {
+            newEntity.setType(Direction.INCOMING.toString());
+        } else {
+            newEntity.setType(Direction.OUTGOING.toString());
+        }
+
+        upcomingRepository.insert(newEntity);
+        return upcomingEntityToItem(newEntity);
     }
 
     private String formatDate(String dateStr) {
