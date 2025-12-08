@@ -1,5 +1,7 @@
 package com.nje.mobileszkozokprojekt.fragment.upcoming;
 
+import static java.lang.Double.parseDouble;
+
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.core.content.ContextCompat;
@@ -47,8 +50,9 @@ public class UpcomingMainFragment extends Fragment {
     private TextInputEditText dueDateEditText;
     private EditText valueEditText;
     private ToggleButton typeToggleButton;
-    private Button addItemButton;
-    private Button clearButton;
+
+    List<UpcomingItem> items = new ArrayList<>();
+    UpcomingViewAdapter adapter;
 
     @Inject
     IRepository<UpcomingEntity> upcomingRepository;
@@ -59,22 +63,25 @@ public class UpcomingMainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_upcoming_main, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.upcomingListRecyclerView);
 
         nameInputText = view.findViewById(R.id.upcomingNameTextInputEditText);
         dueDateEditText = view.findViewById(R.id.upcomingDueDateEditText);
         valueEditText = view.findViewById(R.id.upcomingValueEditTextNumberDecimal);
         typeToggleButton = view.findViewById(R.id.upcomingTypeToggleButton);
 
-        addItemButton = view.findViewById(R.id.upcomingAddItemButton);
-        clearButton = view.findViewById(R.id.upcomingClearAllInputButton);
+        Button addItemButton = view.findViewById(R.id.upcomingAddItemButton);
+        Button clearButton = view.findViewById(R.id.upcomingClearAllInputButton);
 
         addItemButton.setOnClickListener(v -> {
-
-        });
-
-        clearButton.setOnClickListener(v -> {
+            UpcomingItem newItem = createNewEntity();
+            items.add(newItem);
+            adapter.notifyItemInserted(items.size() - 1);
             clearInputs();
+            Toast.makeText(this.getActivity(), "\"" + newItem.getName() + "\" added!", Toast.LENGTH_SHORT).show();
         });
+
+        clearButton.setOnClickListener(v -> clearInputs());
 
         final EditText dueDateEditText = view.findViewById(R.id.upcomingDueDateEditText);
         dueDateEditText.setFocusable(false);
@@ -101,7 +108,6 @@ public class UpcomingMainFragment extends Fragment {
         if (entities == null || entities.isEmpty()) return view;
 
         List<String> labels = new ArrayList<>();
-        List<UpcomingItem> items = new ArrayList<>();
 
         for (UpcomingEntity entity : entities) {
             UpcomingItem upcomingItem = upcomingEntityToItem(entity);
@@ -110,9 +116,10 @@ public class UpcomingMainFragment extends Fragment {
             labels.add(formatDate(upcomingItem.getDueDate()));
         }
 
-        RecyclerView recyclerView = view.findViewById(R.id.upcomingListRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        UpcomingViewAdapter adapter = new UpcomingViewAdapter(items);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireActivity().getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        adapter = new UpcomingViewAdapter(items);
         recyclerView.setAdapter(adapter);
 
         BarChart chart = view.findViewById(R.id.upcomingDiagram);
@@ -179,6 +186,28 @@ public class UpcomingMainFragment extends Fragment {
         Objects.requireNonNull(dueDateEditText.getText()).clear();
         valueEditText.getText().clear();
         typeToggleButton.setChecked(false);
+    }
+
+    private UpcomingItem createNewEntity() {
+        UpcomingEntity newEntity = new UpcomingEntity();
+        newEntity.setName(Objects.requireNonNull(nameInputText.getText()).toString());
+        newEntity.setDueDate(Objects.requireNonNull(dueDateEditText.getText()).toString());
+
+        String valueString = valueEditText.getText().toString();
+        if (valueString.isBlank()) {
+            newEntity.setValue(0);
+        } else {
+            newEntity.setValue(parseDouble(valueString));
+        }
+
+        if (typeToggleButton.isChecked()) {
+            newEntity.setType(Direction.INCOMING.toString());
+        } else {
+            newEntity.setType(Direction.OUTGOING.toString());
+        }
+
+        upcomingRepository.insert(newEntity);
+        return upcomingEntityToItem(newEntity);
     }
 
     private String formatDate(String dateStr) {
