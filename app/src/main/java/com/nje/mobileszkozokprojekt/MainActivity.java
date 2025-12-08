@@ -21,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class MainActivity extends AppCompatActivity {
 
     private NavController navController;
+    private AppBarConfiguration appBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
         assert navHostFragment != null;
         navController = navHostFragment.getNavController();
 
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.estimationFragment).build();
+        appBarConfiguration = new AppBarConfiguration.Builder(
+                navController.getGraph()
+        ).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     }
@@ -49,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 
     @Override
