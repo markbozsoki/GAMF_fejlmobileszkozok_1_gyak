@@ -174,6 +174,7 @@ public class UpcomingMainFragment extends Fragment {
 
     private UpcomingItem upcomingEntityToItem(UpcomingEntity entity) {
         return new UpcomingItem(
+                entity.getId(),
                 entity.getName(),
                 Direction.valueOf(entity.getType().toUpperCase()),
                 entity.getValue(),
