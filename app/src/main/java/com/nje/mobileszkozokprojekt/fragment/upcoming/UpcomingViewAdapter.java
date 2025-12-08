@@ -4,13 +4,17 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.nje.mobileszkozokprojekt.R;
 import com.nje.mobileszkozokprojekt.data.entity.UpcomingEntity;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
+import com.nje.mobileszkozokprojekt.model.Direction;
 import com.nje.mobileszkozokprojekt.model.upcoming.UpcomingItem;
 
 import java.util.List;
@@ -19,13 +23,16 @@ public class UpcomingViewAdapter extends RecyclerView.Adapter<UpcomingViewHolder
 
     private final List<UpcomingItem> upcomingItems;
     private final IRepository<UpcomingEntity> repository;
+    private final View parentView;
 
     public UpcomingViewAdapter(
             List<UpcomingItem> upcomingItems,
-            IRepository<UpcomingEntity> repository
+            IRepository<UpcomingEntity> repository,
+            View parentView
     ) {
         this.upcomingItems = upcomingItems;
         this.repository = repository;
+        this.parentView = parentView;
     }
 
     @NonNull
@@ -53,6 +60,20 @@ public class UpcomingViewAdapter extends RecyclerView.Adapter<UpcomingViewHolder
             repository.delete(entityToRemove);
             upcomingItems.remove(position);
             notifyItemRemoved(position);
+        });
+
+        holder.updateButton.setOnClickListener(v -> {
+            UpcomingItem itemToUpdate = upcomingItems.get(position);
+
+            TextInputEditText nameInputText = parentView.findViewById(R.id.upcomingNameTextInputEditText);
+            TextInputEditText dueDateEditText = parentView.findViewById(R.id.upcomingDueDateEditText);
+            EditText valueEditText = parentView.findViewById(R.id.upcomingValueEditTextNumberDecimal);
+            ToggleButton typeToggleButton = parentView.findViewById(R.id.upcomingTypeToggleButton);
+
+            nameInputText.setText(itemToUpdate.getName());
+            dueDateEditText.setText(itemToUpdate.getDueDate());
+            valueEditText.setText(String.valueOf(itemToUpdate.getValue()));
+            typeToggleButton.setChecked(itemToUpdate.getType() == Direction.INCOMING);
         });
     }
 
