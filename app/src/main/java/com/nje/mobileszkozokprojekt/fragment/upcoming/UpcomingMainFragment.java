@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ToggleButton;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -19,6 +21,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.google.android.material.textfield.TextInputEditText;
 import com.nje.mobileszkozokprojekt.R;
 import com.nje.mobileszkozokprojekt.data.entity.UpcomingEntity;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
@@ -39,6 +42,13 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class UpcomingMainFragment extends Fragment {
 
+    private TextInputEditText nameInputText;
+    private TextInputEditText dueDateEditText;
+    private EditText valueEditText;
+    private ToggleButton typeToggleButton;
+    private Button addItemButton;
+    private Button clearButton;
+
     @Inject
     IRepository<UpcomingEntity> upcomingRepository;
 
@@ -48,6 +58,14 @@ public class UpcomingMainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_upcoming_main, container, false);
+
+        nameInputText = view.findViewById(R.id.upcomingNameTextInputEditText);
+        dueDateEditText = view.findViewById(R.id.upcomingDueDateEditText);
+        valueEditText = view.findViewById(R.id.upcomingValueEditTextNumberDecimal);
+        typeToggleButton = view.findViewById(R.id.upcomingTypeToggleButton);
+
+        addItemButton = view.findViewById(R.id.upcomingAddItemButton);
+        clearButton = view.findViewById(R.id.upcomingClearAllInputButton);
 
         final EditText dueDateEditText = view.findViewById(R.id.upcomingDueDateEditText);
         dueDateEditText.setFocusable(false);
