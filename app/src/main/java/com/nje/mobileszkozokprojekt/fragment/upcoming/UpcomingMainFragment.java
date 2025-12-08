@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -72,7 +73,7 @@ public class UpcomingMainFragment extends Fragment {
         });
 
         clearButton.setOnClickListener(v -> {
-
+            clearInputs();
         });
 
         final EditText dueDateEditText = view.findViewById(R.id.upcomingDueDateEditText);
@@ -165,6 +166,13 @@ public class UpcomingMainFragment extends Fragment {
         chart.invalidate();
 
         return view;
+    }
+
+    private void clearInputs(){
+        Objects.requireNonNull(nameInputText.getText()).clear();
+        Objects.requireNonNull(dueDateEditText.getText()).clear();
+        valueEditText.getText().clear();
+        typeToggleButton.setChecked(false);
     }
 
     private String formatDate(String dateStr) {
