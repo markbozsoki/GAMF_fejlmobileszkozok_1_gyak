@@ -10,34 +10,63 @@
         android:name="com.nje.mobileszkozokprojekt.fragment.HomeFragment"
         android:label="@string/home_label"
         tools:layout="@layout/fragment_home"
-        />
+        >
+        <action
+            android:id="@+id/action_homeFragment_to_acquiredFragment"
+            app:destination="@id/acquiredFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_budgetingFragment"
+            app:destination="@id/budgetingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_upcomingFragment"
+            app:destination="@id/upcomingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_estimationFragment"
+            app:destination="@id/estimationFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/estimationFragment"
         android:name="com.nje.mobileszkozokprojekt.fragment.EstimationFragment"
         android:label="@string/estimation_label"
         tools:layout="@layout/fragment_estimation"
-        />
+        >
+        <action
+            android:id="@+id/action_estimationFragment_to_homeFragment3"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/budgetingFragment"
         android:name="com.nje.mobileszkozokprojekt.fragment.budgeting.BudgetingMainFragment"
         android:label="@string/budgeting_label"
         tools:layout="@layout/fragment_budgeting_main"
-        />
+        >
+        <action
+            android:id="@+id/action_budgetingFragment_to_homeFragment3"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/upcomingFragment"
         android:name="com.nje.mobileszkozokprojekt.fragment.upcoming.UpcomingMainFragment"
-        android:label=""
+        android:label="@string/upcoming_label"
         tools:layout="@layout/fragment_upcoming_main"
-        />
+        >
+        <action
+            android:id="@+id/action_upcomingFragment_to_homeFragment3"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/acquiredFragment"
         android:name="com.nje.mobileszkozokprojekt.fragment.acquired.AcquiredMainFragment"
         android:label="@string/acquired_label"
         tools:layout="@layout/fragment_acquired_main"
-        />
+        >
+        <action
+            android:id="@+id/action_acquiredFragment_to_homeFragment3"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
 </navigation>
