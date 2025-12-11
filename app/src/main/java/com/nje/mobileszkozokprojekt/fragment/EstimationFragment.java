@@ -16,6 +16,7 @@ import com.nje.mobileszkozokprojekt.data.entity.UpcomingEntity;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -47,7 +48,11 @@ public class EstimationFragment extends Fragment {
         double ownedAssetValue = 0;
         List<AcquiredEntity> entities = acquiredRepository.getAll();
         for (AcquiredEntity entity : entities) {
-            ownedAssetValue += entity.getValue();
+            if (Objects.equals(entity.getCategory(), "outgoing")) {
+                ownedAssetValue -= entity.getValue();
+            } else {
+                ownedAssetValue += entity.getValue();
+            }
         }
         return ownedAssetValue;
     }
@@ -56,7 +61,11 @@ public class EstimationFragment extends Fragment {
         double growthRate = 0;
         List<BudgetingEntity> entities = budgetingRepository.getAll();
         for (BudgetingEntity entity : entities) {
-            growthRate += entity.getValue();
+            if (Objects.equals(entity.getCategory(), "outgoing")) {
+                growthRate -= entity.getValue();
+            } else {
+                growthRate += entity.getValue();
+            }
         }
         return growthRate;
     }
