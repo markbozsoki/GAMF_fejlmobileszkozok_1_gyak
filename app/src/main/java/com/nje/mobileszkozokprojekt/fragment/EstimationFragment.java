@@ -43,6 +43,15 @@ public class EstimationFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_estimation, container, false);
     }
 
+    private double calculateOwnedAssetValue() {
+        double ownedAssetValue = 0;
+        List<AcquiredEntity> entities = acquiredRepository.getAll();
+        for (AcquiredEntity entity : entities) {
+            ownedAssetValue += entity.getValue();
+        }
+        return ownedAssetValue;
+    }
+
     private double calculateGrowthRate() {
         double growthRate = 0;
         List<BudgetingEntity> entities = budgetingRepository.getAll();
