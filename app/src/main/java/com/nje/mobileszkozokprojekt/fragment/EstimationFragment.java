@@ -9,12 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
 import com.nje.mobileszkozokprojekt.R;
 import com.nje.mobileszkozokprojekt.data.entity.AcquiredEntity;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
 import com.nje.mobileszkozokprojekt.data.entity.UpcomingEntity;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -40,5 +41,14 @@ public class EstimationFragment extends Fragment {
         BarChart diagram = view.findViewById(R.id.estimationDiagram);
 
         return inflater.inflate(R.layout.fragment_estimation, container, false);
+    }
+
+    private double calculateGrowthRate() {
+        double growthRate = 0;
+        List<BudgetingEntity> entities = budgetingRepository.getAll();
+        for (BudgetingEntity entity : entities) {
+            growthRate += entity.getValue();
+        }
+        return growthRate;
     }
 }
