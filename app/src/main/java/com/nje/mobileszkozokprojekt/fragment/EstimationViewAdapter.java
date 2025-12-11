@@ -5,8 +5,21 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.nje.mobileszkozokprojekt.model.estimation.EstimationItem;
+
+import java.util.List;
+
 public class EstimationViewAdapter extends RecyclerView.Adapter<EstimationViewHolder> {
 
+    private final List<EstimationItem> estimationItems;
+
+    public EstimationViewAdapter(
+            List<EstimationItem> estimationItems
+    ) {
+
+        this.estimationItems = estimationItems;
+    }
 
     @NonNull
     @Override
