@@ -34,6 +34,9 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class EstimationFragment extends Fragment {
 
     @Inject
@@ -124,7 +127,7 @@ public class EstimationFragment extends Fragment {
 
     private double calculateOwnedAssetValue() {
         double ownedAssetValue = 0;
-        List<AcquiredEntity> entities = acquiredRepository.getAll();
+        List<AcquiredEntity> entities = this.acquiredRepository.getAll();
         for (AcquiredEntity entity : entities) {
             if (Objects.equals(entity.getCategory(), "outgoing")) {
                 ownedAssetValue -= entity.getValue();
@@ -137,7 +140,7 @@ public class EstimationFragment extends Fragment {
 
     private double calculateGrowthRate() {
         double growthRate = 0;
-        List<BudgetingEntity> entities = budgetingRepository.getAll();
+        List<BudgetingEntity> entities = this.budgetingRepository.getAll();
         for (BudgetingEntity entity : entities) {
             if (Objects.equals(entity.getCategory(), "outgoing")) {
                 growthRate -= entity.getValue();
@@ -182,6 +185,7 @@ public class EstimationFragment extends Fragment {
     private String incrementDate(String baseDate, int increment) {
         String[] components = baseDate.split("-");
         int month = Integer.parseInt(components[1]) + increment;
+        month = month % 12;
         return components[0] + month + components[2];
     }
 
