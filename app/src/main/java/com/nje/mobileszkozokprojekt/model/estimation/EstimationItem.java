@@ -43,6 +43,10 @@ public class EstimationItem {
         }
     }
 
+    public String getMonthDate() {
+        return getFormatedDate().substring(0,8);
+    }
+
     public void setDate(String date) {
         this.date = date;
     }

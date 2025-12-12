@@ -12,7 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.nje.mobileszkozokprojekt.R;
 import com.nje.mobileszkozokprojekt.data.entity.AcquiredEntity;
 import com.nje.mobileszkozokprojekt.data.entity.BudgetingEntity;
@@ -24,6 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import javax.inject.Inject;
@@ -79,13 +85,41 @@ public class EstimationFragment extends Fragment {
                     ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark)
             );
 
-            barLabels.add(item.getFormatedDate());
+            barLabels.add(item.getMonthDate());
         }
 
         adapter = new EstimationViewAdapter(items);
         recyclerView.setAdapter(adapter);
 
-        return inflater.inflate(R.layout.fragment_estimation, container, false);
+        BarDataSet dataSet = new BarDataSet(barEntries, "");
+        dataSet.setColors(barColors);
+        dataSet.setValueTextSize(10f);
+        dataSet.setDrawValues(true);
+        dataSet.setValueFormatter(new NameValueBarFormatter());
+
+        BarData data = new BarData(dataSet);
+        data.setBarWidth(0.6f);
+
+        diagram.setData(data);
+        diagram.getDescription().setEnabled(false);
+        diagram.getLegend().setEnabled(false);
+
+        XAxis xAxis = diagram.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setGranularity(1f);
+        xAxis.setValueFormatter(new IndexAxisFormatter(barLabels));
+        xAxis.setDrawGridLines(false);
+
+        YAxis leftAxis = diagram.getAxisLeft();
+        leftAxis.setAxisMinimum(-getMaxValue(items));
+        leftAxis.setAxisMaximum(getMaxValue(items));
+        leftAxis.setDrawGridLines(true);
+        diagram.getAxisRight().setEnabled(false);
+
+        diagram.animateY(1000);
+        diagram.invalidate();
+
+        return view;
     }
 
     private double calculateOwnedAssetValue() {
@@ -149,5 +183,36 @@ public class EstimationFragment extends Fragment {
         String[] components = baseDate.split("-");
         int month = Integer.parseInt(components[1]) + increment;
         return components[0] + month + components[2];
+    }
+
+    private float getMaxValue(List<EstimationItem> items) {
+        float max = 0f;
+        for (EstimationItem item : items) {
+            max = Math.max(max, (float)item.getValue());
+        }
+        return max * 1.2f;
+    }
+
+    private static class NameValueBarFormatter extends ValueFormatter {
+        @Override
+        public String getBarLabel(BarEntry barEntry) {
+            Object data = barEntry.getData();
+            if (data instanceof EstimationItem) {
+                EstimationItem item = (EstimationItem) data;
+                return item.getMonthDate() + ": " + String.format(Locale.getDefault(), "%.2f", Math.abs(item.getValue()));
+            }
+            return String.format(Locale.getDefault(), "%.2f", Math.abs(barEntry.getY()));
+        }
+    }
+
+    private static class IndexAxisFormatter extends ValueFormatter {
+        private final List<String> labels;
+        public IndexAxisFormatter(List<String> labels) { this.labels = labels; }
+        @Override
+        public String getFormattedValue(float value) {
+            int index = (int) value;
+            if (index >= 0 && index < labels.size()) return labels.get(index);
+            return "";
+        }
     }
 }
