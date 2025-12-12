@@ -85,6 +85,7 @@ The app can also help visualize the current and predicted state of the user's as
 - implemented the budgeting view frame and list load with no button functionalities  
 - added button actions to update the list of budgeting items
 - updated homepage fragment navigation
+- added estimation view
 
 </details>
 
