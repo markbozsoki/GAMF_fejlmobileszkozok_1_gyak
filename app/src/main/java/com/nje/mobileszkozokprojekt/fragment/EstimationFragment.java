@@ -20,7 +20,9 @@ import com.nje.mobileszkozokprojekt.data.entity.UpcomingEntity;
 import com.nje.mobileszkozokprojekt.data.repository.interfaces.IRepository;
 import com.nje.mobileszkozokprojekt.model.estimation.EstimationItem;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -57,6 +59,12 @@ public class EstimationFragment extends Fragment {
         List<BarEntry> barEntries = new ArrayList<>();
         List<Integer> barColors = new ArrayList<>();
         List<String> barLabels = new ArrayList<>();
+
+        double ownedAssetValue = calculateOwnedAssetValue();
+        double growthRate = calculateGrowthRate();
+
+        items = getBaseEstimationItems(ownedAssetValue, growthRate);
+
 
         for (int i = 0; i < items.size(); i++) {
             EstimationItem item = items.get(i);
@@ -104,5 +112,42 @@ public class EstimationFragment extends Fragment {
             }
         }
         return growthRate;
+    }
+
+    private List<EstimationItem> getBaseEstimationItems(double ownedAssetValue, double growthRate) {
+        List<EstimationItem> baseItems = new ArrayList<>();
+        String currentDate = getCurrentDate();
+        baseItems.add(getFirstEstimationItem(ownedAssetValue, currentDate));
+
+        double currentValue = ownedAssetValue;
+        for (int i = 1; i < 12; i++) {
+            currentValue += growthRate;
+            EstimationItem item = new EstimationItem(
+                    currentValue,
+                    incrementDate(currentDate, i)
+            );
+            baseItems.add(item);
+        }
+
+        return baseItems;
+    }
+
+    private EstimationItem getFirstEstimationItem(double ownedAssetValue, String date) {
+        return new EstimationItem(
+                ownedAssetValue,
+                date
+        );
+    }
+
+    private String getCurrentDate() {
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(currentDate);
+    }
+
+    private String incrementDate(String baseDate, int increment) {
+        String[] components = baseDate.split("-");
+        int month = Integer.parseInt(components[1]) + increment;
+        return components[0] + month + components[2];
     }
 }
