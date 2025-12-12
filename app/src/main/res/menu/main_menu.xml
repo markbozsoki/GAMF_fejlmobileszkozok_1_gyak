@@ -20,9 +20,11 @@
         app:showAsAction="never"
         />
 
+    <!--
     <item
         android:id="@+id/estimationFragment"
         android:title="@string/estimation_label"
         app:showAsAction="never"
         />
+       -->
 </menu>
