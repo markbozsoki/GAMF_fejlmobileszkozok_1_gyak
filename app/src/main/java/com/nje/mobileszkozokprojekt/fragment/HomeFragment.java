@@ -42,9 +42,11 @@ public class HomeFragment extends Fragment {
             findNavController(view).navigate(R.id.action_homeFragment_to_upcomingFragment);
         });
 
+        /*
         Button estimationNavButton = view.findViewById(R.id.estimationNavButton);
         estimationNavButton.setOnClickListener(v -> {
             findNavController(view).navigate(R.id.action_homeFragment_to_estimationFragment);
         });
+         */
     }
 }

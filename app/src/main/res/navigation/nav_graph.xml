@@ -20,11 +20,14 @@
         <action
             android:id="@+id/action_homeFragment_to_upcomingFragment"
             app:destination="@id/upcomingFragment" />
+        <!--
         <action
             android:id="@+id/action_homeFragment_to_estimationFragment"
             app:destination="@id/estimationFragment" />
+            -->
     </fragment>
 
+    <!--
     <fragment
         android:id="@+id/estimationFragment"
         android:name="com.nje.mobileszkozokprojekt.fragment.EstimationFragment"
@@ -35,6 +38,7 @@
             android:id="@+id/action_estimationFragment_to_homeFragment3"
             app:destination="@id/homeFragment" />
     </fragment>
+    -->
 
     <fragment
         android:id="@+id/budgetingFragment"
